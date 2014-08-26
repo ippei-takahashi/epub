@@ -1,0 +1,531 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EEB1E9B819AC717D00BE3A37 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEB1E9B719AC717D00BE3A37 /* Foundation.framework */; };
+		EEB1E9BA19AC717D00BE3A37 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEB1E9B919AC717D00BE3A37 /* CoreGraphics.framework */; };
+		EEB1E9BC19AC717D00BE3A37 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEB1E9BB19AC717D00BE3A37 /* UIKit.framework */; };
+		EEB1E9C219AC717D00BE3A37 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EEB1E9C019AC717D00BE3A37 /* InfoPlist.strings */; };
+		EEB1E9C419AC717D00BE3A37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB1E9C319AC717D00BE3A37 /* main.m */; };
+		EEB1E9C819AC717D00BE3A37 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB1E9C719AC717D00BE3A37 /* AppDelegate.m */; };
+		EEB1E9D119AC717D00BE3A37 /* BooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB1E9D019AC717D00BE3A37 /* BooksViewController.m */; };
+		EEB1E9D319AC717D00BE3A37 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEB1E9D219AC717D00BE3A37 /* Images.xcassets */; };
+		EEB1E9DA19AC717D00BE3A37 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEB1E9D919AC717D00BE3A37 /* XCTest.framework */; };
+		EEB1E9DB19AC717D00BE3A37 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEB1E9B719AC717D00BE3A37 /* Foundation.framework */; };
+		EEB1E9DC19AC717D00BE3A37 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEB1E9BB19AC717D00BE3A37 /* UIKit.framework */; };
+		EEB1E9E419AC717D00BE3A37 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EEB1E9E219AC717D00BE3A37 /* InfoPlist.strings */; };
+		EEB1E9E619AC717D00BE3A37 /* EpubTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB1E9E519AC717D00BE3A37 /* EpubTests.m */; };
+		EEB1E9FC19AC71F200BE3A37 /* LSCollectionViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB1E9F219AC71F200BE3A37 /* LSCollectionViewHelper.m */; };
+		EEB1E9FD19AC71F200BE3A37 /* LSCollectionViewLayoutHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB1E9F419AC71F200BE3A37 /* LSCollectionViewLayoutHelper.m */; };
+		EEB1E9FE19AC71F200BE3A37 /* DraggableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB1E9F719AC71F200BE3A37 /* DraggableCollectionViewFlowLayout.m */; };
+		EEB1E9FF19AC71F200BE3A37 /* UICollectionView+Draggable.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB1E9F919AC71F200BE3A37 /* UICollectionView+Draggable.m */; };
+		EEB1EA0819AC730E00BE3A37 /* BookRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB1EA0719AC730E00BE3A37 /* BookRepository.m */; };
+		EEB1EA0B19AC755C00BE3A37 /* BooksViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB1EA0A19AC755C00BE3A37 /* BooksViewCell.m */; };
+		EEB1EA0E19AC773200BE3A37 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB1EA0D19AC773200BE3A37 /* Book.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EEB1E9DD19AC717D00BE3A37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EEB1E9AC19AC717D00BE3A37 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EEB1E9B319AC717D00BE3A37;
+			remoteInfo = Epub;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EEB1E9B419AC717D00BE3A37 /* Epub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Epub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEB1E9B719AC717D00BE3A37 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EEB1E9B919AC717D00BE3A37 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EEB1E9BB19AC717D00BE3A37 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EEB1E9BF19AC717D00BE3A37 /* Epub-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Epub-Info.plist"; sourceTree = "<group>"; };
+		EEB1E9C119AC717D00BE3A37 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EEB1E9C319AC717D00BE3A37 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EEB1E9C519AC717D00BE3A37 /* Epub-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Epub-Prefix.pch"; sourceTree = "<group>"; };
+		EEB1E9C619AC717D00BE3A37 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EEB1E9C719AC717D00BE3A37 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EEB1E9CF19AC717D00BE3A37 /* BooksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BooksViewController.h; sourceTree = "<group>"; };
+		EEB1E9D019AC717D00BE3A37 /* BooksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BooksViewController.m; sourceTree = "<group>"; };
+		EEB1E9D219AC717D00BE3A37 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EEB1E9D819AC717D00BE3A37 /* EpubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EpubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEB1E9D919AC717D00BE3A37 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		EEB1E9E119AC717D00BE3A37 /* EpubTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EpubTests-Info.plist"; sourceTree = "<group>"; };
+		EEB1E9E319AC717D00BE3A37 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EEB1E9E519AC717D00BE3A37 /* EpubTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EpubTests.m; sourceTree = "<group>"; };
+		EEB1E9F119AC71F200BE3A37 /* LSCollectionViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSCollectionViewHelper.h; sourceTree = "<group>"; };
+		EEB1E9F219AC71F200BE3A37 /* LSCollectionViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSCollectionViewHelper.m; sourceTree = "<group>"; };
+		EEB1E9F319AC71F200BE3A37 /* LSCollectionViewLayoutHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSCollectionViewLayoutHelper.h; sourceTree = "<group>"; };
+		EEB1E9F419AC71F200BE3A37 /* LSCollectionViewLayoutHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSCollectionViewLayoutHelper.m; sourceTree = "<group>"; };
+		EEB1E9F619AC71F200BE3A37 /* DraggableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraggableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		EEB1E9F719AC71F200BE3A37 /* DraggableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraggableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		EEB1E9F819AC71F200BE3A37 /* UICollectionView+Draggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+Draggable.h"; sourceTree = "<group>"; };
+		EEB1E9F919AC71F200BE3A37 /* UICollectionView+Draggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+Draggable.m"; sourceTree = "<group>"; };
+		EEB1E9FA19AC71F200BE3A37 /* UICollectionViewDataSource_Draggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewDataSource_Draggable.h; sourceTree = "<group>"; };
+		EEB1E9FB19AC71F200BE3A37 /* UICollectionViewLayout_Warpable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewLayout_Warpable.h; sourceTree = "<group>"; };
+		EEB1EA0619AC730E00BE3A37 /* BookRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookRepository.h; sourceTree = "<group>"; };
+		EEB1EA0719AC730E00BE3A37 /* BookRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookRepository.m; sourceTree = "<group>"; };
+		EEB1EA0919AC755C00BE3A37 /* BooksViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksViewCell.h; sourceTree = "<group>"; };
+		EEB1EA0A19AC755C00BE3A37 /* BooksViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksViewCell.m; sourceTree = "<group>"; };
+		EEB1EA0C19AC773200BE3A37 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		EEB1EA0D19AC773200BE3A37 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EEB1E9B119AC717D00BE3A37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEB1E9BA19AC717D00BE3A37 /* CoreGraphics.framework in Frameworks */,
+				EEB1E9BC19AC717D00BE3A37 /* UIKit.framework in Frameworks */,
+				EEB1E9B819AC717D00BE3A37 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEB1E9D519AC717D00BE3A37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEB1E9DA19AC717D00BE3A37 /* XCTest.framework in Frameworks */,
+				EEB1E9DC19AC717D00BE3A37 /* UIKit.framework in Frameworks */,
+				EEB1E9DB19AC717D00BE3A37 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EEB1E9AB19AC717D00BE3A37 = {
+			isa = PBXGroup;
+			children = (
+				EEB1E9BD19AC717D00BE3A37 /* Epub */,
+				EEB1E9DF19AC717D00BE3A37 /* EpubTests */,
+				EEB1E9B619AC717D00BE3A37 /* Frameworks */,
+				EEB1E9B519AC717D00BE3A37 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EEB1E9B519AC717D00BE3A37 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EEB1E9B419AC717D00BE3A37 /* Epub.app */,
+				EEB1E9D819AC717D00BE3A37 /* EpubTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EEB1E9B619AC717D00BE3A37 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EEB1E9B719AC717D00BE3A37 /* Foundation.framework */,
+				EEB1E9B919AC717D00BE3A37 /* CoreGraphics.framework */,
+				EEB1E9BB19AC717D00BE3A37 /* UIKit.framework */,
+				EEB1E9D919AC717D00BE3A37 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EEB1E9BD19AC717D00BE3A37 /* Epub */ = {
+			isa = PBXGroup;
+			children = (
+				EEB1E9EF19AC71F200BE3A37 /* DraggableCollectionView */,
+				EEB1E9C619AC717D00BE3A37 /* AppDelegate.h */,
+				EEB1E9C719AC717D00BE3A37 /* AppDelegate.m */,
+				EEB1EA0619AC730E00BE3A37 /* BookRepository.h */,
+				EEB1EA0719AC730E00BE3A37 /* BookRepository.m */,
+				EEB1E9CF19AC717D00BE3A37 /* BooksViewController.h */,
+				EEB1E9D019AC717D00BE3A37 /* BooksViewController.m */,
+				EEB1EA0919AC755C00BE3A37 /* BooksViewCell.h */,
+				EEB1EA0A19AC755C00BE3A37 /* BooksViewCell.m */,
+				EEB1EA0C19AC773200BE3A37 /* Book.h */,
+				EEB1EA0D19AC773200BE3A37 /* Book.m */,
+				EEB1E9D219AC717D00BE3A37 /* Images.xcassets */,
+				EEB1E9BE19AC717D00BE3A37 /* Supporting Files */,
+			);
+			path = Epub;
+			sourceTree = "<group>";
+		};
+		EEB1E9BE19AC717D00BE3A37 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EEB1E9BF19AC717D00BE3A37 /* Epub-Info.plist */,
+				EEB1E9C019AC717D00BE3A37 /* InfoPlist.strings */,
+				EEB1E9C319AC717D00BE3A37 /* main.m */,
+				EEB1E9C519AC717D00BE3A37 /* Epub-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EEB1E9DF19AC717D00BE3A37 /* EpubTests */ = {
+			isa = PBXGroup;
+			children = (
+				EEB1E9E519AC717D00BE3A37 /* EpubTests.m */,
+				EEB1E9E019AC717D00BE3A37 /* Supporting Files */,
+			);
+			path = EpubTests;
+			sourceTree = "<group>";
+		};
+		EEB1E9E019AC717D00BE3A37 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EEB1E9E119AC717D00BE3A37 /* EpubTests-Info.plist */,
+				EEB1E9E219AC717D00BE3A37 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EEB1E9EF19AC71F200BE3A37 /* DraggableCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				EEB1E9F019AC71F200BE3A37 /* Helpers */,
+				EEB1E9F519AC71F200BE3A37 /* Layout */,
+				EEB1E9F819AC71F200BE3A37 /* UICollectionView+Draggable.h */,
+				EEB1E9F919AC71F200BE3A37 /* UICollectionView+Draggable.m */,
+				EEB1E9FA19AC71F200BE3A37 /* UICollectionViewDataSource_Draggable.h */,
+				EEB1E9FB19AC71F200BE3A37 /* UICollectionViewLayout_Warpable.h */,
+			);
+			path = DraggableCollectionView;
+			sourceTree = "<group>";
+		};
+		EEB1E9F019AC71F200BE3A37 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EEB1E9F119AC71F200BE3A37 /* LSCollectionViewHelper.h */,
+				EEB1E9F219AC71F200BE3A37 /* LSCollectionViewHelper.m */,
+				EEB1E9F319AC71F200BE3A37 /* LSCollectionViewLayoutHelper.h */,
+				EEB1E9F419AC71F200BE3A37 /* LSCollectionViewLayoutHelper.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		EEB1E9F519AC71F200BE3A37 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				EEB1E9F619AC71F200BE3A37 /* DraggableCollectionViewFlowLayout.h */,
+				EEB1E9F719AC71F200BE3A37 /* DraggableCollectionViewFlowLayout.m */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EEB1E9B319AC717D00BE3A37 /* Epub */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEB1E9E919AC717D00BE3A37 /* Build configuration list for PBXNativeTarget "Epub" */;
+			buildPhases = (
+				EEB1E9B019AC717D00BE3A37 /* Sources */,
+				EEB1E9B119AC717D00BE3A37 /* Frameworks */,
+				EEB1E9B219AC717D00BE3A37 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Epub;
+			productName = Epub;
+			productReference = EEB1E9B419AC717D00BE3A37 /* Epub.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EEB1E9D719AC717D00BE3A37 /* EpubTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEB1E9EC19AC717D00BE3A37 /* Build configuration list for PBXNativeTarget "EpubTests" */;
+			buildPhases = (
+				EEB1E9D419AC717D00BE3A37 /* Sources */,
+				EEB1E9D519AC717D00BE3A37 /* Frameworks */,
+				EEB1E9D619AC717D00BE3A37 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EEB1E9DE19AC717D00BE3A37 /* PBXTargetDependency */,
+			);
+			name = EpubTests;
+			productName = EpubTests;
+			productReference = EEB1E9D819AC717D00BE3A37 /* EpubTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EEB1E9AC19AC717D00BE3A37 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = IppeiTakahashi;
+				TargetAttributes = {
+					EEB1E9D719AC717D00BE3A37 = {
+						TestTargetID = EEB1E9B319AC717D00BE3A37;
+					};
+				};
+			};
+			buildConfigurationList = EEB1E9AF19AC717D00BE3A37 /* Build configuration list for PBXProject "Epub" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EEB1E9AB19AC717D00BE3A37;
+			productRefGroup = EEB1E9B519AC717D00BE3A37 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EEB1E9B319AC717D00BE3A37 /* Epub */,
+				EEB1E9D719AC717D00BE3A37 /* EpubTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EEB1E9B219AC717D00BE3A37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEB1E9D319AC717D00BE3A37 /* Images.xcassets in Resources */,
+				EEB1E9C219AC717D00BE3A37 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEB1E9D619AC717D00BE3A37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEB1E9E419AC717D00BE3A37 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EEB1E9B019AC717D00BE3A37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEB1E9FE19AC71F200BE3A37 /* DraggableCollectionViewFlowLayout.m in Sources */,
+				EEB1E9D119AC717D00BE3A37 /* BooksViewController.m in Sources */,
+				EEB1EA0B19AC755C00BE3A37 /* BooksViewCell.m in Sources */,
+				EEB1EA0E19AC773200BE3A37 /* Book.m in Sources */,
+				EEB1E9FC19AC71F200BE3A37 /* LSCollectionViewHelper.m in Sources */,
+				EEB1E9C819AC717D00BE3A37 /* AppDelegate.m in Sources */,
+				EEB1E9C419AC717D00BE3A37 /* main.m in Sources */,
+				EEB1EA0819AC730E00BE3A37 /* BookRepository.m in Sources */,
+				EEB1E9FD19AC71F200BE3A37 /* LSCollectionViewLayoutHelper.m in Sources */,
+				EEB1E9FF19AC71F200BE3A37 /* UICollectionView+Draggable.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEB1E9D419AC717D00BE3A37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEB1E9E619AC717D00BE3A37 /* EpubTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EEB1E9DE19AC717D00BE3A37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EEB1E9B319AC717D00BE3A37 /* Epub */;
+			targetProxy = EEB1E9DD19AC717D00BE3A37 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EEB1E9C019AC717D00BE3A37 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EEB1E9C119AC717D00BE3A37 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EEB1E9E219AC717D00BE3A37 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EEB1E9E319AC717D00BE3A37 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EEB1E9E719AC717D00BE3A37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EEB1E9E819AC717D00BE3A37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EEB1E9EA19AC717D00BE3A37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Epub/Epub-Prefix.pch";
+				INFOPLIST_FILE = "Epub/Epub-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EEB1E9EB19AC717D00BE3A37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Epub/Epub-Prefix.pch";
+				INFOPLIST_FILE = "Epub/Epub-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		EEB1E9ED19AC717D00BE3A37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Epub.app/Epub";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Epub/Epub-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "EpubTests/EpubTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		EEB1E9EE19AC717D00BE3A37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Epub.app/Epub";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Epub/Epub-Prefix.pch";
+				INFOPLIST_FILE = "EpubTests/EpubTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EEB1E9AF19AC717D00BE3A37 /* Build configuration list for PBXProject "Epub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEB1E9E719AC717D00BE3A37 /* Debug */,
+				EEB1E9E819AC717D00BE3A37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEB1E9E919AC717D00BE3A37 /* Build configuration list for PBXNativeTarget "Epub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEB1E9EA19AC717D00BE3A37 /* Debug */,
+				EEB1E9EB19AC717D00BE3A37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EEB1E9EC19AC717D00BE3A37 /* Build configuration list for PBXNativeTarget "EpubTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEB1E9ED19AC717D00BE3A37 /* Debug */,
+				EEB1E9EE19AC717D00BE3A37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EEB1E9AC19AC717D00BE3A37 /* Project object */;
+}
