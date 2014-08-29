@@ -11,6 +11,39 @@
 #endif
 
 #ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+// Google Analytics
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+#import "GAITrackedViewController.h"
 #endif
+
+
+// Google Analytics Macro
+#define GA_INIT_TRACKER(INTERVAL, ACCOUNT) {\
+[GAI sharedInstance].trackUncaughtExceptions = YES; \
+[GAI sharedInstance].dispatchInterval = INTERVAL; \
+[[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelWarning]; \
+[[GAI sharedInstance] trackerWithTrackingId:ACCOUNT]; \
+}
+
+#define GA_TRACK_PAGE(PAGE) {\
+[[[GAI sharedInstance] defaultTracker] send:[[[GAIDictionaryBuilder createAppView] set:PAGE forKey:kGAIScreenName] build]];\
+};
+
+#define GA_TRACK_EVENT(CATEGORY,ACTION,LABEL,VALUE) {\
+[[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:CATEGORY \
+action:ACTION \
+label:LABEL \
+value:VALUE] build]]; \
+};
+
+#define GA_TRACK_CLASS  GA_TRACK_PAGE(NSStringFromClass([self class]));
+#define GA_TRACK_METHOD GA_TRACK_EVENT(NSStringFromClass([self class]),  NSStringFromSelector(_cmd), @"", nil);
+
+
+#define APP (AppDelegate*)[[UIApplication sharedApplication] delegate]
+#define APP_KEY @"zvbfi94aamiii7tlsuv9yivu2bba4u0bv"

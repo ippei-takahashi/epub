@@ -14,7 +14,9 @@
 
 @property (nonatomic, readonly) NSMutableArray *books;
 
-- (void)addBook:book;
+- (void)addBook:(Book *)book;
+- (void)removeBook:(Book *)book;
+
 - (void)moveBookAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 - (void)replaceBookAtIndex:(NSUInteger)index withBook:(Book *)book;
 

@@ -12,4 +12,11 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (nonatomic, readonly) CGFloat BASE_WIDTH;
+@property (nonatomic, readonly) CGFloat BASE_HEIGHT;
+@property (nonatomic, readonly) CGFloat WINDOW_WIDTH;
+@property (nonatomic, readonly) CGFloat WINDOW_HEIGHT;
+@property (nonatomic, readonly) CGFloat STATUS_BAR_HEIGHT;
+@property (nonatomic, readonly) CGRect BOUNDS_RECT;
+
 @end

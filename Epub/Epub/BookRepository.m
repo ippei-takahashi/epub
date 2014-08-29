@@ -27,9 +27,14 @@
     return self;
 }
 
-- (void)addBook:book
+- (void)addBook:(Book *)book
 {
     [self.books addObject:book];
+}
+
+- (void)removeBook:(Book *)book
+{
+    [self.books removeObject:book];
 }
 
 - (void)moveBookAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex

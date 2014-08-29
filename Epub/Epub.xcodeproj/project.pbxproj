@@ -27,6 +27,10 @@
 		EEB1EA0819AC730E00BE3A37 /* BookRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB1EA0719AC730E00BE3A37 /* BookRepository.m */; };
 		EEB1EA0B19AC755C00BE3A37 /* BooksViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB1EA0A19AC755C00BE3A37 /* BooksViewCell.m */; };
 		EEB1EA0E19AC773200BE3A37 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB1EA0D19AC773200BE3A37 /* Book.m */; };
+		F640D2F519B05D8B0018A1D7 /* hondana_5s.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F640D2F419B05D8B0018A1D7 /* hondana_5s.jpg */; };
+		F640D2F719B05E220018A1D7 /* book.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F640D2F619B05E220018A1D7 /* book.jpg */; };
+		F640D2FD19B05E7D0018A1D7 /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D2FA19B05E7D0018A1D7 /* CommonUtils.m */; };
+		F640D2FE19B05E7D0018A1D7 /* Net.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D2FC19B05E7D0018A1D7 /* Net.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +78,18 @@
 		EEB1EA0A19AC755C00BE3A37 /* BooksViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksViewCell.m; sourceTree = "<group>"; };
 		EEB1EA0C19AC773200BE3A37 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		EEB1EA0D19AC773200BE3A37 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		F640D2F419B05D8B0018A1D7 /* hondana_5s.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hondana_5s.jpg; sourceTree = "<group>"; };
+		F640D2F619B05E220018A1D7 /* book.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = book.jpg; sourceTree = "<group>"; };
+		F640D2F919B05E7D0018A1D7 /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
+		F640D2FA19B05E7D0018A1D7 /* CommonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtils.m; sourceTree = "<group>"; };
+		F640D2FB19B05E7D0018A1D7 /* Net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Net.h; sourceTree = "<group>"; };
+		F640D2FC19B05E7D0018A1D7 /* Net.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Net.m; sourceTree = "<group>"; };
+		F640D30019B05FE30018A1D7 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		F640D30119B05FE30018A1D7 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		F640D30219B05FE30018A1D7 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		F640D30319B05FE30018A1D7 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		F640D30419B05FE30018A1D7 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		F640D30519B05FE30018A1D7 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +160,9 @@
 				EEB1EA0A19AC755C00BE3A37 /* BooksViewCell.m */,
 				EEB1EA0C19AC773200BE3A37 /* Book.h */,
 				EEB1EA0D19AC773200BE3A37 /* Book.m */,
+				F640D2FF19B05FE30018A1D7 /* GAI */,
+				F640D2F819B05E7D0018A1D7 /* Utils */,
+				F640D2F319B05D8B0018A1D7 /* Images */,
 				EEB1E9D219AC717D00BE3A37 /* Images.xcassets */,
 				EEB1E9BE19AC717D00BE3A37 /* Supporting Files */,
 			);
@@ -210,6 +229,39 @@
 				EEB1E9F719AC71F200BE3A37 /* DraggableCollectionViewFlowLayout.m */,
 			);
 			path = Layout;
+			sourceTree = "<group>";
+		};
+		F640D2F319B05D8B0018A1D7 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				F640D2F619B05E220018A1D7 /* book.jpg */,
+				F640D2F419B05D8B0018A1D7 /* hondana_5s.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		F640D2F819B05E7D0018A1D7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F640D2F919B05E7D0018A1D7 /* CommonUtils.h */,
+				F640D2FA19B05E7D0018A1D7 /* CommonUtils.m */,
+				F640D2FB19B05E7D0018A1D7 /* Net.h */,
+				F640D2FC19B05E7D0018A1D7 /* Net.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		F640D2FF19B05FE30018A1D7 /* GAI */ = {
+			isa = PBXGroup;
+			children = (
+				F640D30019B05FE30018A1D7 /* GAI.h */,
+				F640D30119B05FE30018A1D7 /* GAIDictionaryBuilder.h */,
+				F640D30219B05FE30018A1D7 /* GAIFields.h */,
+				F640D30319B05FE30018A1D7 /* GAILogger.h */,
+				F640D30419B05FE30018A1D7 /* GAITrackedViewController.h */,
+				F640D30519B05FE30018A1D7 /* GAITracker.h */,
+			);
+			path = GAI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +342,8 @@
 			files = (
 				EEB1E9D319AC717D00BE3A37 /* Images.xcassets in Resources */,
 				EEB1E9C219AC717D00BE3A37 /* InfoPlist.strings in Resources */,
+				F640D2F719B05E220018A1D7 /* book.jpg in Resources */,
+				F640D2F519B05D8B0018A1D7 /* hondana_5s.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,12 +365,14 @@
 				EEB1E9FE19AC71F200BE3A37 /* DraggableCollectionViewFlowLayout.m in Sources */,
 				EEB1E9D119AC717D00BE3A37 /* BooksViewController.m in Sources */,
 				EEB1EA0B19AC755C00BE3A37 /* BooksViewCell.m in Sources */,
+				F640D2FE19B05E7D0018A1D7 /* Net.m in Sources */,
 				EEB1EA0E19AC773200BE3A37 /* Book.m in Sources */,
 				EEB1E9FC19AC71F200BE3A37 /* LSCollectionViewHelper.m in Sources */,
 				EEB1E9C819AC717D00BE3A37 /* AppDelegate.m in Sources */,
 				EEB1E9C419AC717D00BE3A37 /* main.m in Sources */,
 				EEB1EA0819AC730E00BE3A37 /* BookRepository.m in Sources */,
 				EEB1E9FD19AC71F200BE3A37 /* LSCollectionViewLayoutHelper.m in Sources */,
+				F640D2FD19B05E7D0018A1D7 /* CommonUtils.m in Sources */,
 				EEB1E9FF19AC71F200BE3A37 /* UICollectionView+Draggable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

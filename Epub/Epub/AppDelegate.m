@@ -9,7 +9,35 @@
 #import "AppDelegate.h"
 #import "BooksViewController.h"
 
+@interface AppDelegate()
+
+@property(nonatomic, readwrite) CGFloat BASE_WIDTH;
+@property(nonatomic, readwrite) CGFloat BASE_HEIGHT;
+@property(nonatomic, readwrite) CGFloat WINDOW_WIDTH;
+@property(nonatomic, readwrite) CGFloat WINDOW_HEIGHT;
+@property(nonatomic, readwrite) CGFloat STATUS_BAR_HEIGHT;
+@property(nonatomic, readwrite) CGRect BOUNDS_RECT;
+
+@end
+
 @implementation AppDelegate
+
+- (id)init
+{
+    self = [super init];
+    
+    if (!self) {
+        return nil;
+    }
+    
+    self.BASE_WIDTH = 640.0f;
+    self.BASE_HEIGHT = 1136.0f;
+    self.BOUNDS_RECT = [[UIScreen mainScreen] bounds];
+    self.WINDOW_WIDTH = self.BOUNDS_RECT.size.width;
+    self.WINDOW_HEIGHT = self.BOUNDS_RECT.size.height;
+    
+    return self;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
