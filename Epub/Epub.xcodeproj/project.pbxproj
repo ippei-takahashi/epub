@@ -31,6 +31,36 @@
 		F640D2F719B05E220018A1D7 /* book.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F640D2F619B05E220018A1D7 /* book.jpg */; };
 		F640D2FD19B05E7D0018A1D7 /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D2FA19B05E7D0018A1D7 /* CommonUtils.m */; };
 		F640D2FE19B05E7D0018A1D7 /* Net.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D2FC19B05E7D0018A1D7 /* Net.m */; };
+		F640D32219BEEDAF0018A1D7 /* default.epub in Resources */ = {isa = PBXBuildFile; fileRef = F640D30719BEEDAF0018A1D7 /* default.epub */; };
+		F640D32319BEEDAF0018A1D7 /* Dumas - The Count of Monte Cristo.epub in Resources */ = {isa = PBXBuildFile; fileRef = F640D30819BEEDAF0018A1D7 /* Dumas - The Count of Monte Cristo.epub */; };
+		F640D32419BEEDAF0018A1D7 /* EPUBBestPractices-1_0_3.epub in Resources */ = {isa = PBXBuildFile; fileRef = F640D30919BEEDAF0018A1D7 /* EPUBBestPractices-1_0_3.epub */; };
+		F640D32519BEEDAF0018A1D7 /* melville-moby-dick.epub in Resources */ = {isa = PBXBuildFile; fileRef = F640D30A19BEEDAF0018A1D7 /* melville-moby-dick.epub */; };
+		F640D32619BEEDAF0018A1D7 /* pg31232-images.epub in Resources */ = {isa = PBXBuildFile; fileRef = F640D30B19BEEDAF0018A1D7 /* pg31232-images.epub */; };
+		F640D32719BEEDAF0018A1D7 /* Stross - Accelerando.epub in Resources */ = {isa = PBXBuildFile; fileRef = F640D30C19BEEDAF0018A1D7 /* Stross - Accelerando.epub */; };
+		F640D32819BEEDAF0018A1D7 /* Treasure_Island.epub in Resources */ = {isa = PBXBuildFile; fileRef = F640D30D19BEEDAF0018A1D7 /* Treasure_Island.epub */; };
+		F640D32919BEEDAF0018A1D7 /* CBook.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D31019BEEDAF0018A1D7 /* CBook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D32A19BEEDAF0018A1D7 /* CBookContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D31219BEEDAF0018A1D7 /* CBookContainer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D32B19BEEDAF0018A1D7 /* CBookLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D31419BEEDAF0018A1D7 /* CBookLibrary.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D32E19BEEDAF0018A1D7 /* CSection.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D31919BEEDAF0018A1D7 /* CSection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D32F19BEEDAF0018A1D7 /* CTouchBookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D31B19BEEDAF0018A1D7 /* CTouchBookPageViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D34F19BEFF0F0018A1D7 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D33819BEFF0F0018A1D7 /* CXMLDocument_CreationExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D35019BEFF0F0018A1D7 /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D33A19BEFF0F0018A1D7 /* CXMLNode_CreationExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D35119BEFF0F0018A1D7 /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D33C19BEFF0F0018A1D7 /* CXMLDocument.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D35219BEFF0F0018A1D7 /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D33E19BEFF0F0018A1D7 /* CXMLDocument_PrivateExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D35319BEFF0F0018A1D7 /* CXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D34019BEFF0F0018A1D7 /* CXMLElement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D35419BEFF0F0018A1D7 /* CXMLElement_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D34219BEFF0F0018A1D7 /* CXMLElement_CreationExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D35519BEFF0F0018A1D7 /* CXMLElement_ElementTreeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D34419BEFF0F0018A1D7 /* CXMLElement_ElementTreeExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D35619BEFF0F0018A1D7 /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D34619BEFF0F0018A1D7 /* CXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D35719BEFF0F0018A1D7 /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D34819BEFF0F0018A1D7 /* CXMLNode_PrivateExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D35819BEFF0F0018A1D7 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D34A19BEFF0F0018A1D7 /* CXMLNode_XPathExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D35919BEFF0F0018A1D7 /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D34D19BEFF0F0018A1D7 /* CTidy.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F640D35B19BF04E20018A1D7 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F640D35A19BF04E20018A1D7 /* libxml2.dylib */; };
+		F640D35E19BF119A0018A1D7 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F640D33319BEFCF30018A1D7 /* libz.1.2.5.dylib */; };
+		F640D36C19BF11D50018A1D7 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = F640D36219BF11D50018A1D7 /* ioapi.c */; };
+		F640D36D19BF11D50018A1D7 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = F640D36419BF11D50018A1D7 /* mztools.c */; };
+		F640D36E19BF11D50018A1D7 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = F640D36619BF11D50018A1D7 /* unzip.c */; };
+		F640D36F19BF11D50018A1D7 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = F640D36819BF11D50018A1D7 /* zip.c */; };
+		F640D37019BF11D50018A1D7 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = F640D36B19BF11D50018A1D7 /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +120,61 @@
 		F640D30319B05FE30018A1D7 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
 		F640D30419B05FE30018A1D7 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
 		F640D30519B05FE30018A1D7 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		F640D30719BEEDAF0018A1D7 /* default.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.epub; sourceTree = "<group>"; };
+		F640D30819BEEDAF0018A1D7 /* Dumas - The Count of Monte Cristo.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dumas - The Count of Monte Cristo.epub"; sourceTree = "<group>"; };
+		F640D30919BEEDAF0018A1D7 /* EPUBBestPractices-1_0_3.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EPUBBestPractices-1_0_3.epub"; sourceTree = "<group>"; };
+		F640D30A19BEEDAF0018A1D7 /* melville-moby-dick.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "melville-moby-dick.epub"; sourceTree = "<group>"; };
+		F640D30B19BEEDAF0018A1D7 /* pg31232-images.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pg31232-images.epub"; sourceTree = "<group>"; };
+		F640D30C19BEEDAF0018A1D7 /* Stross - Accelerando.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Stross - Accelerando.epub"; sourceTree = "<group>"; };
+		F640D30D19BEEDAF0018A1D7 /* Treasure_Island.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = Treasure_Island.epub; sourceTree = "<group>"; };
+		F640D30F19BEEDAF0018A1D7 /* CBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBook.h; sourceTree = "<group>"; };
+		F640D31019BEEDAF0018A1D7 /* CBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBook.m; sourceTree = "<group>"; };
+		F640D31119BEEDAF0018A1D7 /* CBookContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBookContainer.h; sourceTree = "<group>"; };
+		F640D31219BEEDAF0018A1D7 /* CBookContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBookContainer.m; sourceTree = "<group>"; };
+		F640D31319BEEDAF0018A1D7 /* CBookLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBookLibrary.h; sourceTree = "<group>"; };
+		F640D31419BEEDAF0018A1D7 /* CBookLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBookLibrary.m; sourceTree = "<group>"; };
+		F640D31819BEEDAF0018A1D7 /* CSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSection.h; sourceTree = "<group>"; };
+		F640D31919BEEDAF0018A1D7 /* CSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSection.m; sourceTree = "<group>"; };
+		F640D31A19BEEDAF0018A1D7 /* CTouchBookPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTouchBookPageViewController.h; sourceTree = "<group>"; };
+		F640D31B19BEEDAF0018A1D7 /* CTouchBookPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTouchBookPageViewController.m; sourceTree = "<group>"; };
+		F640D33319BEFCF30018A1D7 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		F640D33719BEFF0F0018A1D7 /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
+		F640D33819BEFF0F0018A1D7 /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
+		F640D33919BEFF0F0018A1D7 /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
+		F640D33A19BEFF0F0018A1D7 /* CXMLNode_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_CreationExtensions.m; sourceTree = "<group>"; };
+		F640D33B19BEFF0F0018A1D7 /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
+		F640D33C19BEFF0F0018A1D7 /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
+		F640D33D19BEFF0F0018A1D7 /* CXMLDocument_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_PrivateExtensions.h; sourceTree = "<group>"; };
+		F640D33E19BEFF0F0018A1D7 /* CXMLDocument_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_PrivateExtensions.m; sourceTree = "<group>"; };
+		F640D33F19BEFF0F0018A1D7 /* CXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement.h; sourceTree = "<group>"; };
+		F640D34019BEFF0F0018A1D7 /* CXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement.m; sourceTree = "<group>"; };
+		F640D34119BEFF0F0018A1D7 /* CXMLElement_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement_CreationExtensions.h; sourceTree = "<group>"; };
+		F640D34219BEFF0F0018A1D7 /* CXMLElement_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement_CreationExtensions.m; sourceTree = "<group>"; };
+		F640D34319BEFF0F0018A1D7 /* CXMLElement_ElementTreeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement_ElementTreeExtensions.h; sourceTree = "<group>"; };
+		F640D34419BEFF0F0018A1D7 /* CXMLElement_ElementTreeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement_ElementTreeExtensions.m; sourceTree = "<group>"; };
+		F640D34519BEFF0F0018A1D7 /* CXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode.h; sourceTree = "<group>"; };
+		F640D34619BEFF0F0018A1D7 /* CXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode.m; sourceTree = "<group>"; };
+		F640D34719BEFF0F0018A1D7 /* CXMLNode_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_PrivateExtensions.h; sourceTree = "<group>"; };
+		F640D34819BEFF0F0018A1D7 /* CXMLNode_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_PrivateExtensions.m; sourceTree = "<group>"; };
+		F640D34919BEFF0F0018A1D7 /* CXMLNode_XPathExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_XPathExtensions.h; sourceTree = "<group>"; };
+		F640D34A19BEFF0F0018A1D7 /* CXMLNode_XPathExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_XPathExtensions.m; sourceTree = "<group>"; };
+		F640D34C19BEFF0F0018A1D7 /* CTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTidy.h; sourceTree = "<group>"; };
+		F640D34D19BEFF0F0018A1D7 /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
+		F640D34E19BEFF0F0018A1D7 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
+		F640D35A19BF04E20018A1D7 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		F640D35C19BF08C90018A1D7 /* oreilly-978-4-87311-522-1e.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oreilly-978-4-87311-522-1e.epub"; sourceTree = "<group>"; };
+		F640D35D19BF08C90018A1D7 /* oreilly-978-4-87311-542-9e.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oreilly-978-4-87311-542-9e.epub"; sourceTree = "<group>"; };
+		F640D36119BF11D50018A1D7 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		F640D36219BF11D50018A1D7 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		F640D36319BF11D50018A1D7 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		F640D36419BF11D50018A1D7 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		F640D36519BF11D50018A1D7 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		F640D36619BF11D50018A1D7 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		F640D36719BF11D50018A1D7 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		F640D36819BF11D50018A1D7 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		F640D36919BF11D50018A1D7 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		F640D36A19BF11D50018A1D7 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		F640D36B19BF11D50018A1D7 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +182,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F640D35E19BF119A0018A1D7 /* libz.1.2.5.dylib in Frameworks */,
+				F640D35B19BF04E20018A1D7 /* libxml2.dylib in Frameworks */,
 				EEB1E9BA19AC717D00BE3A37 /* CoreGraphics.framework in Frameworks */,
 				EEB1E9BC19AC717D00BE3A37 /* UIKit.framework in Frameworks */,
 				EEB1E9B819AC717D00BE3A37 /* Foundation.framework in Frameworks */,
@@ -138,6 +225,8 @@
 		EEB1E9B619AC717D00BE3A37 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F640D35A19BF04E20018A1D7 /* libxml2.dylib */,
+				F640D33319BEFCF30018A1D7 /* libz.1.2.5.dylib */,
 				EEB1E9B719AC717D00BE3A37 /* Foundation.framework */,
 				EEB1E9B919AC717D00BE3A37 /* CoreGraphics.framework */,
 				EEB1E9BB19AC717D00BE3A37 /* UIKit.framework */,
@@ -149,6 +238,9 @@
 		EEB1E9BD19AC717D00BE3A37 /* Epub */ = {
 			isa = PBXGroup;
 			children = (
+				F640D35F19BF11D50018A1D7 /* ZipArchive */,
+				F640D30619BEEDAF0018A1D7 /* Books */,
+				F640D30E19BEEDAF0018A1D7 /* CBook */,
 				EEB1E9EF19AC71F200BE3A37 /* DraggableCollectionView */,
 				EEB1E9C619AC717D00BE3A37 /* AppDelegate.h */,
 				EEB1E9C719AC717D00BE3A37 /* AppDelegate.m */,
@@ -160,6 +252,7 @@
 				EEB1EA0A19AC755C00BE3A37 /* BooksViewCell.m */,
 				EEB1EA0C19AC773200BE3A37 /* Book.h */,
 				EEB1EA0D19AC773200BE3A37 /* Book.m */,
+				F640D33519BEFF0F0018A1D7 /* Touch */,
 				F640D2FF19B05FE30018A1D7 /* GAI */,
 				F640D2F819B05E7D0018A1D7 /* Utils */,
 				F640D2F319B05D8B0018A1D7 /* Images */,
@@ -264,6 +357,111 @@
 			path = GAI;
 			sourceTree = "<group>";
 		};
+		F640D30619BEEDAF0018A1D7 /* Books */ = {
+			isa = PBXGroup;
+			children = (
+				F640D35C19BF08C90018A1D7 /* oreilly-978-4-87311-522-1e.epub */,
+				F640D35D19BF08C90018A1D7 /* oreilly-978-4-87311-542-9e.epub */,
+				F640D30719BEEDAF0018A1D7 /* default.epub */,
+				F640D30819BEEDAF0018A1D7 /* Dumas - The Count of Monte Cristo.epub */,
+				F640D30919BEEDAF0018A1D7 /* EPUBBestPractices-1_0_3.epub */,
+				F640D30A19BEEDAF0018A1D7 /* melville-moby-dick.epub */,
+				F640D30B19BEEDAF0018A1D7 /* pg31232-images.epub */,
+				F640D30C19BEEDAF0018A1D7 /* Stross - Accelerando.epub */,
+				F640D30D19BEEDAF0018A1D7 /* Treasure_Island.epub */,
+			);
+			path = Books;
+			sourceTree = "<group>";
+		};
+		F640D30E19BEEDAF0018A1D7 /* CBook */ = {
+			isa = PBXGroup;
+			children = (
+				F640D30F19BEEDAF0018A1D7 /* CBook.h */,
+				F640D31019BEEDAF0018A1D7 /* CBook.m */,
+				F640D31119BEEDAF0018A1D7 /* CBookContainer.h */,
+				F640D31219BEEDAF0018A1D7 /* CBookContainer.m */,
+				F640D31319BEEDAF0018A1D7 /* CBookLibrary.h */,
+				F640D31419BEEDAF0018A1D7 /* CBookLibrary.m */,
+				F640D31819BEEDAF0018A1D7 /* CSection.h */,
+				F640D31919BEEDAF0018A1D7 /* CSection.m */,
+				F640D31A19BEEDAF0018A1D7 /* CTouchBookPageViewController.h */,
+				F640D31B19BEEDAF0018A1D7 /* CTouchBookPageViewController.m */,
+			);
+			path = CBook;
+			sourceTree = "<group>";
+		};
+		F640D33519BEFF0F0018A1D7 /* Touch */ = {
+			isa = PBXGroup;
+			children = (
+				F640D33619BEFF0F0018A1D7 /* Creation */,
+				F640D33B19BEFF0F0018A1D7 /* CXMLDocument.h */,
+				F640D33C19BEFF0F0018A1D7 /* CXMLDocument.m */,
+				F640D33D19BEFF0F0018A1D7 /* CXMLDocument_PrivateExtensions.h */,
+				F640D33E19BEFF0F0018A1D7 /* CXMLDocument_PrivateExtensions.m */,
+				F640D33F19BEFF0F0018A1D7 /* CXMLElement.h */,
+				F640D34019BEFF0F0018A1D7 /* CXMLElement.m */,
+				F640D34119BEFF0F0018A1D7 /* CXMLElement_CreationExtensions.h */,
+				F640D34219BEFF0F0018A1D7 /* CXMLElement_CreationExtensions.m */,
+				F640D34319BEFF0F0018A1D7 /* CXMLElement_ElementTreeExtensions.h */,
+				F640D34419BEFF0F0018A1D7 /* CXMLElement_ElementTreeExtensions.m */,
+				F640D34519BEFF0F0018A1D7 /* CXMLNode.h */,
+				F640D34619BEFF0F0018A1D7 /* CXMLNode.m */,
+				F640D34719BEFF0F0018A1D7 /* CXMLNode_PrivateExtensions.h */,
+				F640D34819BEFF0F0018A1D7 /* CXMLNode_PrivateExtensions.m */,
+				F640D34919BEFF0F0018A1D7 /* CXMLNode_XPathExtensions.h */,
+				F640D34A19BEFF0F0018A1D7 /* CXMLNode_XPathExtensions.m */,
+				F640D34B19BEFF0F0018A1D7 /* Tidy */,
+				F640D34E19BEFF0F0018A1D7 /* TouchXML.h */,
+			);
+			path = Touch;
+			sourceTree = "<group>";
+		};
+		F640D33619BEFF0F0018A1D7 /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				F640D33719BEFF0F0018A1D7 /* CXMLDocument_CreationExtensions.h */,
+				F640D33819BEFF0F0018A1D7 /* CXMLDocument_CreationExtensions.m */,
+				F640D33919BEFF0F0018A1D7 /* CXMLNode_CreationExtensions.h */,
+				F640D33A19BEFF0F0018A1D7 /* CXMLNode_CreationExtensions.m */,
+			);
+			path = Creation;
+			sourceTree = "<group>";
+		};
+		F640D34B19BEFF0F0018A1D7 /* Tidy */ = {
+			isa = PBXGroup;
+			children = (
+				F640D34C19BEFF0F0018A1D7 /* CTidy.h */,
+				F640D34D19BEFF0F0018A1D7 /* CTidy.m */,
+			);
+			path = Tidy;
+			sourceTree = "<group>";
+		};
+		F640D35F19BF11D50018A1D7 /* ZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				F640D36019BF11D50018A1D7 /* minizip */,
+				F640D36A19BF11D50018A1D7 /* ZipArchive.h */,
+				F640D36B19BF11D50018A1D7 /* ZipArchive.mm */,
+			);
+			path = ZipArchive;
+			sourceTree = "<group>";
+		};
+		F640D36019BF11D50018A1D7 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				F640D36119BF11D50018A1D7 /* crypt.h */,
+				F640D36219BF11D50018A1D7 /* ioapi.c */,
+				F640D36319BF11D50018A1D7 /* ioapi.h */,
+				F640D36419BF11D50018A1D7 /* mztools.c */,
+				F640D36519BF11D50018A1D7 /* mztools.h */,
+				F640D36619BF11D50018A1D7 /* unzip.c */,
+				F640D36719BF11D50018A1D7 /* unzip.h */,
+				F640D36819BF11D50018A1D7 /* zip.c */,
+				F640D36919BF11D50018A1D7 /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -342,8 +540,15 @@
 			files = (
 				EEB1E9D319AC717D00BE3A37 /* Images.xcassets in Resources */,
 				EEB1E9C219AC717D00BE3A37 /* InfoPlist.strings in Resources */,
+				F640D32819BEEDAF0018A1D7 /* Treasure_Island.epub in Resources */,
+				F640D32219BEEDAF0018A1D7 /* default.epub in Resources */,
+				F640D32619BEEDAF0018A1D7 /* pg31232-images.epub in Resources */,
+				F640D32319BEEDAF0018A1D7 /* Dumas - The Count of Monte Cristo.epub in Resources */,
+				F640D32719BEEDAF0018A1D7 /* Stross - Accelerando.epub in Resources */,
 				F640D2F719B05E220018A1D7 /* book.jpg in Resources */,
 				F640D2F519B05D8B0018A1D7 /* hondana_5s.jpg in Resources */,
+				F640D32419BEEDAF0018A1D7 /* EPUBBestPractices-1_0_3.epub in Resources */,
+				F640D32519BEEDAF0018A1D7 /* melville-moby-dick.epub in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,18 +567,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F640D35419BEFF0F0018A1D7 /* CXMLElement_CreationExtensions.m in Sources */,
+				F640D36E19BF11D50018A1D7 /* unzip.c in Sources */,
+				F640D32F19BEEDAF0018A1D7 /* CTouchBookPageViewController.m in Sources */,
+				F640D32E19BEEDAF0018A1D7 /* CSection.m in Sources */,
 				EEB1E9FE19AC71F200BE3A37 /* DraggableCollectionViewFlowLayout.m in Sources */,
+				F640D35919BEFF0F0018A1D7 /* CTidy.m in Sources */,
 				EEB1E9D119AC717D00BE3A37 /* BooksViewController.m in Sources */,
 				EEB1EA0B19AC755C00BE3A37 /* BooksViewCell.m in Sources */,
 				F640D2FE19B05E7D0018A1D7 /* Net.m in Sources */,
+				F640D36F19BF11D50018A1D7 /* zip.c in Sources */,
+				F640D35519BEFF0F0018A1D7 /* CXMLElement_ElementTreeExtensions.m in Sources */,
+				F640D34F19BEFF0F0018A1D7 /* CXMLDocument_CreationExtensions.m in Sources */,
 				EEB1EA0E19AC773200BE3A37 /* Book.m in Sources */,
+				F640D36C19BF11D50018A1D7 /* ioapi.c in Sources */,
+				F640D32B19BEEDAF0018A1D7 /* CBookLibrary.m in Sources */,
+				F640D32919BEEDAF0018A1D7 /* CBook.m in Sources */,
+				F640D36D19BF11D50018A1D7 /* mztools.c in Sources */,
 				EEB1E9FC19AC71F200BE3A37 /* LSCollectionViewHelper.m in Sources */,
 				EEB1E9C819AC717D00BE3A37 /* AppDelegate.m in Sources */,
+				F640D35119BEFF0F0018A1D7 /* CXMLDocument.m in Sources */,
 				EEB1E9C419AC717D00BE3A37 /* main.m in Sources */,
+				F640D35219BEFF0F0018A1D7 /* CXMLDocument_PrivateExtensions.m in Sources */,
 				EEB1EA0819AC730E00BE3A37 /* BookRepository.m in Sources */,
+				F640D35719BEFF0F0018A1D7 /* CXMLNode_PrivateExtensions.m in Sources */,
 				EEB1E9FD19AC71F200BE3A37 /* LSCollectionViewLayoutHelper.m in Sources */,
+				F640D37019BF11D50018A1D7 /* ZipArchive.mm in Sources */,
 				F640D2FD19B05E7D0018A1D7 /* CommonUtils.m in Sources */,
+				F640D35819BEFF0F0018A1D7 /* CXMLNode_XPathExtensions.m in Sources */,
+				F640D35019BEFF0F0018A1D7 /* CXMLNode_CreationExtensions.m in Sources */,
+				F640D35319BEFF0F0018A1D7 /* CXMLElement.m in Sources */,
+				F640D32A19BEEDAF0018A1D7 /* CBookContainer.m in Sources */,
 				EEB1E9FF19AC71F200BE3A37 /* UICollectionView+Draggable.m in Sources */,
+				F640D35619BEFF0F0018A1D7 /* CXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +723,18 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Epub/Epub-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"//:configuration",
+					"=",
+					"Release\nHEADER_SEARCH_PATHS[arch=*]",
+					"=",
+					"$(inherited)",
+					"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include\n\n//:completeSettings",
+					"=",
+					"none\n${SDKROOT}/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "Epub/Epub-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -512,6 +750,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Epub/Epub-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${SDKROOT}/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "Epub/Epub-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";

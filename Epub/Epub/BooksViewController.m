@@ -13,6 +13,7 @@
 #import "Book.h"
 #import "DraggableCollectionViewFlowLayout.h"
 #import "CommonUtils.h"
+#import "CTouchBookPageViewController.h"
 #import <objc/runtime.h>
 
 static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdentifier";
@@ -125,6 +126,17 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
     cell.backgroundColor = [UIColor clearColor];
     [cell addSubview:cell.imageView];
     
+    void (^sendToDetail)(id) = ^(id selector) {
+        [self sendToDetail:selector withUrl:[NSURL fileURLWithPath:
+                                              [[NSBundle mainBundle] pathForResource:@"default" ofType:@"epub"]]];
+    };
+    SEL sel = NSSelectorFromString([NSString stringWithFormat:@"removeBook%ld", indexPath.row]);
+    IMP imp = imp_implementationWithBlock(sendToDetail);
+    class_replaceMethod([self class], sel, imp, nil);
+    UITapGestureRecognizer *sendToDetailGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:sel];
+    cell.imageView.userInteractionEnabled = YES;
+    [cell.imageView addGestureRecognizer:sendToDetailGesture];
+    
     if (_isDeleteMode) {
         UIButton *deleteButtonView = [[UIButton alloc]
                                       initWithFrame:[CommonUtils makeNormalizeRect:0 top:0 width:40 height:40]];
@@ -195,6 +207,13 @@ canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.repository removeBook:book];
     [self.collectionView reloadData];
+}
+
+- (void)sendToDetail:(id)sender withUrl:(NSURL *)url
+{
+    CTouchBookPageViewController *vc = [[CTouchBookPageViewController alloc] init];
+    vc.URL = url;
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 
