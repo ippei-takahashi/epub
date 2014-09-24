@@ -12,7 +12,7 @@
 @class CBook;
 @class CSection;
 
-@interface CTouchBookPageViewController : UIViewController {
+@interface CTouchBookPageViewController : UIViewController <UIScrollViewDelegate> {
 	UIWebView *webView;
 
 	NSURL *URL;
@@ -26,6 +26,7 @@
 @property (readwrite, nonatomic, retain) CBookContainer *bookContainer;
 @property (readwrite, nonatomic, retain) CBook *currentBook;
 @property (readwrite, nonatomic, retain) CSection *currentSection;
+@property (readwrite, nonatomic, retain) UIScrollView *scrollView;
 
 - (IBAction)nextSection:(id)inSender;
 

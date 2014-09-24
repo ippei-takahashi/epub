@@ -50,15 +50,21 @@
     
     
     float previewTop = statusBarHeight + [CommonUtils unnormalizeHeight:navBar.frame.size.height];
+
     
     webView = [[UIWebView alloc] init];
+    webView.scalesPageToFit = YES;
     webView.frame = [CommonUtils makeNormalizeRect:0 top:previewTop width:[APP BASE_WIDTH] height:[APP BASE_HEIGHT] - previewTop];
     [self.view addSubview:self.webView];
+    
     
     UIPanGestureRecognizer *backGestureRecognizer
     = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                               action:@selector(backGesture:)];
     [self.view addGestureRecognizer:backGestureRecognizer];
+    
+    self.webView.scrollView.delegate = self;
+    self.webView.scrollView.bounces = YES;
     
     bookContainer = [[CBookContainer alloc] initWithURL:URL];
     currentBook = [[self.bookContainer.books objectAtIndex:0] retain];
@@ -66,6 +72,19 @@
     
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
     [self.webView loadRequest:theRequest];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if ([scrollView contentOffset].x > [scrollView contentSize].width - scrollView.frame.size.width + 60.0f) {
+        [scrollView setScrollEnabled:NO];
+        [self nextSection:scrollView];
+        [scrollView setScrollEnabled:YES];
+    } else if([scrollView contentOffset].x < -60.0f) {
+        [scrollView setScrollEnabled:NO];
+        [self prevSection:scrollView];
+        [scrollView setScrollEnabled:YES];
+    }
 }
 
 
