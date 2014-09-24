@@ -31,6 +31,8 @@
     _book = book;
     
     _imageView = book.imageView;
+    _progress = book.progress;
+    _fileName = book.fileName;
 }
 
 /*

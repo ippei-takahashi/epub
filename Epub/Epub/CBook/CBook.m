@@ -16,53 +16,83 @@
 @synthesize URL;
 @synthesize rootURL;
 @synthesize sections;
+@synthesize cover;
 
 - (id)initWithURL:(NSURL *)inURL rootURL:(NSURL *)inRootURL
 {
-if ((self = [super init]) != NULL)
+    if ((self = [super init]) != NULL)
 	{
-	URL = [inURL retain];
-	rootURL = [inRootURL retain];
+        URL = [inURL retain];
+        rootURL = [inRootURL retain];
 	}
-return(self);
+    return(self);
 }
 
 - (NSArray *)sections
 {
-if (sections == NULL)
+    if (sections == NULL)
 	{
-	NSError *theError = NULL;
-	CXMLDocument *theDocument = [[[CXMLDocument alloc] initWithContentsOfURL:self.URL options:0 error:&theError] autorelease];
-	if (theDocument == NULL)
+        NSError *theError = NULL;
+        CXMLDocument *theDocument = [[[CXMLDocument alloc] initWithContentsOfURL:self.URL options:0 error:&theError] autorelease];
+        if (theDocument == NULL)
 		{
-		NSLog(@"%@", theError);
+            NSLog(@"%@", theError);
 		}
-
-	NSDictionary *theMappings = [NSDictionary dictionaryWithObjectsAndKeys:
-		@"http://www.idpf.org/2007/opf", @"NS",
-		NULL];
-
-	NSArray *theNodes = [theDocument nodesForXPath:@"/NS:package/NS:spine/NS:itemref/@idref" namespaceMappings:theMappings error:&theError];
-
-	NSMutableArray *theSections = [NSMutableArray array];
-
-	for (CXMLNode *theItemRef in theNodes)
+        
+        NSDictionary *theMappings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     @"http://www.idpf.org/2007/opf", @"NS",
+                                     NULL];
+        
+        NSArray *theNodes = [theDocument nodesForXPath:@"/NS:package/NS:spine/NS:itemref/@idref" namespaceMappings:theMappings error:&theError];
+        
+        NSMutableArray *theSections = [NSMutableArray array];
+        
+        for (CXMLNode *theItemRef in theNodes)
 		{
-//		NSString *theIDRef = [theElement attributeForName:@"idref"]
-		
-		NSString *theXPath = [NSString stringWithFormat:@"/NS:package/NS:manifest/NS:item[@id='%@']", [theItemRef stringValue]];
-		
-		CXMLElement *theElement = [[theDocument nodesForXPath:theXPath namespaceMappings:theMappings error:&theError] lastObject];
-		
-		NSString *thePathComponent = [[theElement attributeForName:@"href"] stringValue];
-		NSURL *theSectionURL = [NSURL URLWithString:thePathComponent relativeToURL:self.rootURL];
-		CSection *theSection = [[[CSection alloc] initWithURL:theSectionURL] autorelease];
-		[theSections addObject:theSection];
+            //		NSString *theIDRef = [theElement attributeForName:@"idref"]
+            
+            NSString *theXPath = [NSString stringWithFormat:@"/NS:package/NS:manifest/NS:item[@id='%@']", [theItemRef stringValue]];
+            
+            CXMLElement *theElement = [[theDocument nodesForXPath:theXPath namespaceMappings:theMappings error:&theError] lastObject];
+            
+            NSString *thePathComponent = [[theElement attributeForName:@"href"] stringValue];
+            NSURL *theSectionURL = [NSURL URLWithString:thePathComponent relativeToURL:self.rootURL];
+            CSection *theSection = [[[CSection alloc] initWithURL:theSectionURL] autorelease];
+            [theSections addObject:theSection];
 		}
-
-	sections = [theSections copy];
+        
+        sections = [theSections copy];
 	}
-return(sections);
+    return(sections);
+}
+
+- (UIImage *)cover
+{
+    if (cover == NULL) {
+        NSError *theError = NULL;
+        CXMLDocument *theDocument = [[[CXMLDocument alloc] initWithContentsOfURL:self.URL options:0 error:&theError] autorelease];
+        if (theDocument == NULL)
+		{
+            NSLog(@"%@", theError);
+		}
+        
+        NSDictionary *theMappings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     @"http://www.idpf.org/2007/opf", @"NS",
+                                     NULL];
+        
+        
+        NSString *theXPath = @"/NS:package/NS:manifest/NS:item[@properties='cover-image']";
+        CXMLElement *theElement = [[theDocument nodesForXPath:theXPath namespaceMappings:theMappings error:&theError] firstObject];
+        if (!theElement) {
+            cover = nil;
+            return nil;
+        }
+        NSString *thePathComponent = [[theElement attributeForName:@"href"] stringValue];
+        NSURL *theCoverURL = [NSURL URLWithString:thePathComponent relativeToURL:self.rootURL];
+        NSData *data= [NSData dataWithContentsOfURL: theCoverURL];
+        cover = [UIImage imageWithData:data];
+    }
+    return cover;
 }
 
 @end

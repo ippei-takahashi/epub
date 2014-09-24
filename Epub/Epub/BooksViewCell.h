@@ -14,5 +14,8 @@
 
 @property (nonatomic) Book *book;
 @property (weak, nonatomic) UIImageView *imageView;
+@property (readwrite) double progress;
+@property (nonatomic, readonly) NSString *fileName;
+
 
 @end

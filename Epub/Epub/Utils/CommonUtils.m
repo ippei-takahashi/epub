@@ -97,14 +97,17 @@ UIColor *colorFontDark;
 
 + (UIImageView *)statusBarView
 {
-    return nil;
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.frame = [CommonUtils makeNormalizeRect:0 top:0 width:[APP BASE_WIDTH] height:[CommonUtils unnormalizeHeight:[APP STATUS_BAR_HEIGHT]]];
+    imageView.backgroundColor = [UIColor blackColor];
+    return imageView;
 }
 
 + (UINavigationItem *)title
 {
     UINavigationItem *title = [[UINavigationItem alloc] init];
     UILabel *label = [[UILabel alloc] init];
-    label.text = @"GIFMAGAZINE";
+    label.text = @"ライブラリ";
     label.font = [CommonUtils fontTitle];
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor whiteColor];

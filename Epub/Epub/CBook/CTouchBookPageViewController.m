@@ -11,6 +11,7 @@
 #import "CBookContainer.h"
 #import "CBook.h"
 #import "CSection.h"
+#import "CommonUtils.h"
 
 @implementation CTouchBookPageViewController
 
@@ -22,9 +23,36 @@
 
 - (void)viewDidLoad
 {
-[super viewDidLoad];
+    [super viewDidLoad];
     
-    self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self.view addSubview:[CommonUtils statusBarView]];
+    
+    float statusBarHeight = [CommonUtils unnormalizeHeight:[APP STATUS_BAR_HEIGHT]];
+    
+    UINavigationItem *title = [CommonUtils title];
+    UIButton *customBackButtonView = [UIButton buttonWithType:UIButtonTypeCustom];
+    customBackButtonView.frame =  [CommonUtils makeNormalizeRect:0 top:0 width:92.0f height:65.0f];
+    [customBackButtonView setBackgroundImage:[UIImage imageNamed:@"btn_store_5s.png"] forState:UIControlStateNormal];
+    [customBackButtonView addTarget:self
+                             action:@selector(sendToTop:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customBackButtonView];
+    
+    title.leftBarButtonItem = backButtonItem;
+    
+    UINavigationBar *navBar = [[UINavigationBar alloc] init];
+    navBar.frame = [CommonUtils makeNormalizeRect:0 top:statusBarHeight width:640.0f height:88.0f];
+    [navBar pushNavigationItem:title animated:YES];
+    
+    [UINavigationBar appearance].barTintColor = [UIColor blackColor];
+    [self.view addSubview:navBar];
+    
+    
+    float previewTop = statusBarHeight + [CommonUtils unnormalizeHeight:navBar.frame.size.height];
+    
+    webView = [[UIWebView alloc] init];
+    webView.frame = [CommonUtils makeNormalizeRect:0 top:previewTop width:[APP BASE_WIDTH] height:[APP BASE_HEIGHT] - previewTop];
     [self.view addSubview:self.webView];
     
     UIPanGestureRecognizer *backGestureRecognizer
@@ -32,22 +60,12 @@
                                               action:@selector(backGesture:)];
     [self.view addGestureRecognizer:backGestureRecognizer];
     
-//
-
-//NSString *thePath = [[NSBundle mainBundle] pathForResource:@"Dumas - The Count of Monte Cristo" ofType:@"epub"];
-//NSString *thePath = [[NSBundle mainBundle] pathForResource:@"melville-moby-dick" ofType:@"epub"];
-//NSString *thePath = self.URL.path;
-//thePath = [(id)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)thePath, NULL, NULL, kCFStringEncodingUTF8) autorelease];
-
-//NSString *theString = [NSString stringWithFormat:@"x-zipfile://%@/", thePath];
-//NSURL *theURL = [NSURL URLWithString:theString];
-
-bookContainer = [[CBookContainer alloc] initWithURL:URL];
-currentBook = [[self.bookContainer.books objectAtIndex:0] retain];
-currentSection = [[self.currentBook.sections objectAtIndex:0] retain];
-
-NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
-[self.webView loadRequest:theRequest];
+    bookContainer = [[CBookContainer alloc] initWithURL:URL];
+    currentBook = [[self.bookContainer.books objectAtIndex:0] retain];
+    currentSection = [[self.currentBook.sections objectAtIndex:0] retain];
+    
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
+    [self.webView loadRequest:theRequest];
 }
 
 
@@ -120,15 +138,25 @@ BOOL lock = NO;
     lock = YES;
     
     [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(unlock) userInfo:nil repeats:NO];
-NSUInteger theSectionIndex = [self.currentBook.sections indexOfObject:self.currentSection];
+    NSUInteger theSectionIndex = [self.currentBook.sections indexOfObject:self.currentSection];
     if (theSectionIndex == [self.currentBook.sections count] - 1) {
         return;
     }
-
     
-self.currentSection = [self.currentBook.sections objectAtIndex:theSectionIndex + 1];
-NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
-[self.webView loadRequest:theRequest];
+    
+    self.currentSection = [self.currentBook.sections objectAtIndex:theSectionIndex + 1];
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
+    [self.webView loadRequest:theRequest];
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+- (void)sendToTop:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end

@@ -16,21 +16,21 @@
 
 - (id)init
 {
-if ((self = [super init]) != NULL)
+    if ((self = [super init]) != NULL)
 	{
-	books = [[NSMutableArray alloc] init];
-
-	NSString *thePath = [[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:@"Books"];
-	for (NSString *theSubpath in [[NSFileManager defaultManager] subpathsAtPath:thePath])
+        books = [[NSMutableArray alloc] init];
+        
+        NSString *thePath = [[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:@"Books"];
+        for (NSString *theSubpath in [[NSFileManager defaultManager] subpathsAtPath:thePath])
 		{
-		NSURL *theURL = [NSURL fileURLWithPath:[thePath stringByAppendingPathComponent:theSubpath]];
-		
-		CBookContainer *theContainer = [[[CBookContainer alloc] initWithURL:theURL] autorelease];
-		
-		[self.books addObject:theContainer];
+            NSURL *theURL = [NSURL fileURLWithPath:[thePath stringByAppendingPathComponent:theSubpath]];
+            
+            CBookContainer *theContainer = [[[CBookContainer alloc] initWithURL:theURL] autorelease];
+            
+            [self.books addObject:theContainer];
 		}
 	}
-return(self);
+    return(self);
 }
 
 

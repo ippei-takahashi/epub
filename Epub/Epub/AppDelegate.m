@@ -43,6 +43,9 @@
 {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    self.STATUS_BAR_HEIGHT = [UIApplication sharedApplication].statusBarFrame.size.height;
     
     self.window.rootViewController = [[BooksViewController alloc] init];
     [self.window makeKeyAndVisible];
@@ -76,5 +79,20 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    NSString *query = [[url absoluteString]
+                       stringByReplacingOccurrencesOfString: [NSString stringWithFormat:@"%@://", [url scheme]]
+                       withString:@"http://"];
+    
+    NSURL *downloadUrl = [NSURL URLWithString:query];
+    
+    BooksViewController *vc = [[BooksViewController alloc] init];
+    vc.downloadUrl = downloadUrl;
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
+    return YES;
+}
+
 
 @end

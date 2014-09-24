@@ -15,6 +15,8 @@
     self = [super init];
     if (self) {
         _imageView = dictionary[@"imageView"];
+        _progress = [dictionary[@"progress"] doubleValue];
+        _fileName = dictionary[@"fileName"];
     }
     return self;
 }

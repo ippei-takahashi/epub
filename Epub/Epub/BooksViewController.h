@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BooksViewController : UIViewController
+@interface BooksViewController : UIViewController <NSURLConnectionDataDelegate>
+
+@property (readwrite, nonatomic, retain) NSURL *downloadUrl;
 
 @end
