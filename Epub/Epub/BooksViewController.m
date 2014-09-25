@@ -112,7 +112,8 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
         
-        if ([fileManager fileExistsAtPath:filePath]) {
+        if ([fileManager fileExistsAtPath:filePath] ||
+            ![[[filePath lastPathComponent] pathExtension] isEqual:@"epub"]) {
             downloadUrl = nil;
         } else {
             UIImageView *imageView = [[UIImageView alloc] init];
