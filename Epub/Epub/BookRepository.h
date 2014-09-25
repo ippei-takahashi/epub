@@ -20,5 +20,6 @@
 - (void)moveBookAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 - (void)replaceBookAtIndex:(NSUInteger)index withBook:(Book *)book;
 
+- (NSArray *)loadBookNames;
 
 @end

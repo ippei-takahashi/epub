@@ -10,8 +10,8 @@
 
 @interface Book : NSObject
 
-@property (nonatomic, readonly) NSString *fileName;
-@property (nonatomic, readonly) UIImageView *imageView;
+@property (nonatomic, readwrite) NSString *fileName;
+@property (nonatomic, readwrite) UIImageView *imageView;
 @property (readwrite) double progress;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;

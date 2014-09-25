@@ -31,10 +31,10 @@
     
     float statusBarHeight = [CommonUtils unnormalizeHeight:[APP STATUS_BAR_HEIGHT]];
     
-    UINavigationItem *title = [CommonUtils title];
+    UINavigationItem *title = [CommonUtils title:@""];
     UIButton *customBackButtonView = [UIButton buttonWithType:UIButtonTypeCustom];
-    customBackButtonView.frame =  [CommonUtils makeNormalizeRect:0 top:0 width:92.0f height:65.0f];
-    [customBackButtonView setBackgroundImage:[UIImage imageNamed:@"btn_store_5s.png"] forState:UIControlStateNormal];
+    customBackButtonView.frame =  [CommonUtils makeNormalizeRect:0 top:0 width:162.0f height:65.0f];
+    [customBackButtonView setBackgroundImage:[UIImage imageNamed:@"btn_library_5s.png"] forState:UIControlStateNormal];
     [customBackButtonView addTarget:self
                              action:@selector(sendToTop:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customBackButtonView];
@@ -68,10 +68,23 @@
     
     bookContainer = [[CBookContainer alloc] initWithURL:URL];
     currentBook = [[self.bookContainer.books objectAtIndex:0] retain];
-    currentSection = [[self.currentBook.sections objectAtIndex:0] retain];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    long section = [defaults integerForKey:[NSString stringWithFormat:@"section_%@",
+                                         [self.currentBook.rootURL absoluteString]]];
+    currentSection = [[self.currentBook.sections objectAtIndex:section] retain];
     
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
     [self.webView loadRequest:theRequest];
+    
+    UISlider *sl = [[UISlider alloc] init];
+    sl.frame = [CommonUtils makeNormalizeRect:20.0f top:[APP BASE_HEIGHT] - 100.0f width:600.0f height:30.0f];
+    sl.minimumValue = 0.0;
+    sl.maximumValue = [self.currentBook.sections count] - 1;
+    sl.value = section;
+    [sl addTarget:self action:@selector(changeSection:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:sl];
+
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -147,6 +160,7 @@ BOOL lock = NO;
     self.currentSection = [self.currentBook.sections objectAtIndex:theSectionIndex - 1];
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
     [self.webView loadRequest:theRequest];
+    [self saveSection:theSectionIndex - 1];
 }
 
 - (void)nextSection:(id)inSender
@@ -166,6 +180,27 @@ BOOL lock = NO;
     self.currentSection = [self.currentBook.sections objectAtIndex:theSectionIndex + 1];
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
     [self.webView loadRequest:theRequest];
+    [self saveSection:theSectionIndex + 1];
+}
+
+- (void)changeSection:(UISlider *)slider
+{
+    NSUInteger theSectionIndex = slider.value;
+    self.currentSection = [self.currentBook.sections objectAtIndex:theSectionIndex];
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
+    [self.webView loadRequest:theRequest];
+    [self saveSection:theSectionIndex];
+}
+
+- (void)saveSection:(NSUInteger)section
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:section forKey:[NSString stringWithFormat:@"section_%@",
+                                         [self.currentBook.rootURL absoluteString]]];
+    BOOL successful = [defaults synchronize];
+    if (successful) {
+        NSLog(@"section = %ld", section);
+    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

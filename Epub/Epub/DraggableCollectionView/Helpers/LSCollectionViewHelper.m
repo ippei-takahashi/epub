@@ -8,6 +8,7 @@
 #import "UICollectionViewLayout_Warpable.h"
 #import "UICollectionViewDataSource_Draggable.h"
 #import "LSCollectionViewLayoutHelper.h"
+#import "BooksViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 static int kObservingCollectionViewLayoutContext;
@@ -108,11 +109,12 @@ typedef NS_ENUM(NSInteger, _ScrollingDirection) {
 }
 
 - (UIImage *)imageFromCell:(UICollectionViewCell *)cell {
-    UIGraphicsBeginImageContextWithOptions(cell.bounds.size, cell.isOpaque, 0.0f);
-    [cell.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
+    return ((BooksViewCell *)cell).imageView.image;
+//    UIGraphicsBeginImageContextWithOptions(cell.bounds.size, cell.isOpaque, 0.0f);
+//    [cell.layer renderInContext:UIGraphicsGetCurrentContext()];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return image;
 }
 
 - (void)invalidatesScrollTimer {
@@ -234,8 +236,9 @@ typedef NS_ENUM(NSInteger, _ScrollingDirection) {
             UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
             cell.highlighted = NO;
             [mockCell removeFromSuperview];
-            mockCell = [[UIImageView alloc] initWithFrame:cell.frame];
+            mockCell = [[UIImageView alloc] initWithFrame:((BooksViewCell *)cell).imageView.frame];
             mockCell.image = [self imageFromCell:cell];
+            mockCell.backgroundColor = [UIColor whiteColor];
             mockCenter = mockCell.center;
             [self.collectionView addSubview:mockCell];
             [UIView

@@ -7,6 +7,7 @@
 //
 
 #import "BookRepository.h"
+#import "Book.h"
 
 @interface BookRepository ()
 
@@ -30,11 +31,13 @@
 - (void)addBook:(Book *)book
 {
     [self.books addObject:book];
+    [self saveBookNames];
 }
 
 - (void)removeBook:(Book *)book
 {
     [self.books removeObject:book];
+    [self saveBookNames];
 }
 
 - (void)moveBookAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex
@@ -48,6 +51,7 @@
                              atIndex:toIndex];
     
     self.books = [NSMutableArray arrayWithArray:afterSortedBooks];
+    [self saveBookNames];
 }
 
 - (void)replaceBookAtIndex:(NSUInteger)index withBook:(Book *)book
@@ -56,6 +60,31 @@
     [books replaceObjectAtIndex:index withObject:books];
     
     self.books = [NSMutableArray arrayWithArray:books];
+    [self saveBookNames];
+}
+
+- (void)saveBookNames
+{
+    
+    NSMutableArray *bookNames = [NSMutableArray array];
+    
+    for (int i = 0; i < [self.books count]; i++) {
+        Book *book = [self.books objectAtIndex:i];
+        [bookNames addObject:book.fileName];
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:bookNames forKey:@"bookNames"];
+    BOOL successful = [defaults synchronize];
+    if (successful) {
+        NSLog(@"%@", @"データの保存に成功しました。");
+    }
+}
+
+- (NSArray *)loadBookNames
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults objectForKey:@"bookNames"];
 }
 
 @end

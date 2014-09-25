@@ -53,6 +53,7 @@
         if (theDocument == NULL)
 		{
             NSLog(@"%@", theError);
+            return nil;
 		}
         
         NSDictionary *theMappings = [NSDictionary dictionaryWithObjectsAndKeys:

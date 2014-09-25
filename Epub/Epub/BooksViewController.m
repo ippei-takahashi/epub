@@ -49,29 +49,29 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
     if (self) {
         _isDeleteMode = NO;
         _repository = [BookRepository new];
-        
-        NSString *dirPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-        
+                
         // ファイルマネージャを作成
         NSFileManager *fileManager = [NSFileManager defaultManager];
         
-        NSError *error;
-        NSArray *list = [fileManager contentsOfDirectoryAtPath:dirPath
-                                                         error:&error];
         
-        for (NSString *name in list) {            
+//        NSArray *list = @[@"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/default.epub",
+//                         @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga.epub"];
+        
+        NSArray *list = [self.repository loadBookNames];
+        
+        
+        for (NSString *fileName in list) {
             BOOL isDirectory = NO;
-            NSString *fileName = [dirPath stringByAppendingString:[NSString stringWithFormat:@"/%@", name]];
             [fileManager fileExistsAtPath:fileName isDirectory:&isDirectory];
             
             if (isDirectory) {
                 continue;
             }
             
-            if (![[name pathExtension] isEqual:@"epub"]) {
+            if (![[[fileName lastPathComponent] pathExtension] isEqual:@"epub"]) {
                 continue;
             }
-
+            
             UIImageView *imageView = [[UIImageView alloc] init];
             imageView.frame = CGRectMake(0, 0, 60, 80);
             
@@ -93,7 +93,7 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
                                        fileName, @"fileName",
                                        nil]]];
         }
-
+        
         
         self.editing = NO;
     }
@@ -139,13 +139,13 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
     [customBackButtonView addTarget:self
                              action:@selector(sendToStore:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customBackButtonView];
-
-
+    
+    
     UIButton *customNextButtonView = [UIButton buttonWithType:UIButtonTypeCustom];
     customNextButtonView.frame =  [CommonUtils makeNormalizeRect:0 top:0 width:92.0f height:65.0f];
     [customNextButtonView setBackgroundImage:[UIImage imageNamed:@"btn_delete_5s.png"] forState:UIControlStateNormal];
     [customNextButtonView addTarget:self
-                         action:@selector(toggleDeleteMode:) forControlEvents:UIControlEventTouchUpInside];
+                             action:@selector(toggleDeleteMode:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *nextButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customNextButtonView];
     
     title.leftBarButtonItem = backButtonItem;
@@ -160,13 +160,13 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
     
     
     float previewTop = statusBarHeight + [CommonUtils unnormalizeHeight:navBar.frame.size.height];
-
+    
     
     UIImageView *backgroundImageView = [[UIImageView alloc]
                                         initWithImage:[UIImage imageNamed:@"hondana_5s.jpg"]];
     backgroundImageView.frame = [CommonUtils makeNormalizeRect:0 top:previewTop width:[APP BASE_WIDTH] height:[APP BASE_HEIGHT]];
     [self.view addSubview:backgroundImageView];
-
+    
     
     DraggableCollectionViewFlowLayout *layout = [[DraggableCollectionViewFlowLayout alloc] init];
     self.collectionView = [[UICollectionView alloc]
@@ -240,7 +240,7 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
         UITapGestureRecognizer *sendToDetailGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:sel];
         cell.imageView.userInteractionEnabled = YES;
         [cell.imageView addGestureRecognizer:sendToDetailGesture];
-    
+        
         if (_isDeleteMode) {
             UIButton *deleteButtonView = [[UIButton alloc]
                                           initWithFrame:[CommonUtils makeNormalizeRect:0 top:0 width:40 height:40]];
@@ -259,7 +259,7 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
         }
     } else {
         UIProgressView *pv = [[UIProgressView alloc]
-                               initWithProgressViewStyle:UIProgressViewStyleDefault];
+                              initWithProgressViewStyle:UIProgressViewStyleDefault];
         pv.frame = CGRectMake(5, 60, 50, 10);
         pv.progress = cell.progress;
         [cell addSubview:pv];
@@ -273,7 +273,7 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
            toIndexPath:(NSIndexPath *)toIndexPath
 {
     [self.repository moveBookAtIndex:fromIndexPath.row
-                               toIndex:toIndexPath.row];
+                             toIndex:toIndexPath.row];
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView

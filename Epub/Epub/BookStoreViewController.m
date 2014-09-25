@@ -22,10 +22,10 @@
     
     float statusBarHeight = [CommonUtils unnormalizeHeight:[APP STATUS_BAR_HEIGHT]];
     
-    UINavigationItem *title = [CommonUtils title];
+    UINavigationItem *title = [CommonUtils title:@"ストア"];
     UIButton *customBackButtonView = [UIButton buttonWithType:UIButtonTypeCustom];
-    customBackButtonView.frame =  [CommonUtils makeNormalizeRect:0 top:0 width:92.0f height:65.0f];
-    [customBackButtonView setBackgroundImage:[UIImage imageNamed:@"btn_store_5s.png"] forState:UIControlStateNormal];
+    customBackButtonView.frame =  [CommonUtils makeNormalizeRect:0 top:0 width:162.0f height:65.0f];
+    [customBackButtonView setBackgroundImage:[UIImage imageNamed:@"btn_library_5s.png"] forState:UIControlStateNormal];
     [customBackButtonView addTarget:self
                              action:@selector(sendToTop:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customBackButtonView];
