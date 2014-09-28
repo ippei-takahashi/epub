@@ -17,6 +17,7 @@
         _imageView = dictionary[@"imageView"];
         _progress = [dictionary[@"progress"] doubleValue];
         _fileName = dictionary[@"fileName"];
+        _downloadUrl = dictionary[@"downloadUrl"];
     }
     return self;
 }

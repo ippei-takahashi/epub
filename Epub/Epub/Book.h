@@ -13,6 +13,7 @@
 @property (nonatomic, readwrite) NSString *fileName;
 @property (nonatomic, readwrite) UIImageView *imageView;
 @property (readwrite) double progress;
+@property (nonatomic, readwrite) NSURL *downloadUrl;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

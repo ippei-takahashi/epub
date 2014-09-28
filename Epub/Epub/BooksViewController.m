@@ -17,6 +17,7 @@
 #import "BookStoreViewController.h"
 #import "CBook.h"
 #import "CBookContainer.h"
+#import "NSMutableArray+QueueAdditions.h"
 #import <objc/runtime.h>
 
 static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdentifier";
@@ -31,6 +32,8 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
 @property (nonatomic) NSUInteger totalBytes;
 @property (nonatomic) NSUInteger receivedBytes;
 @property (nonatomic) Book *downloadingBook;
+@property (nonatomic) NSMutableArray *downloadingBookQueue;
+
 
 
 @property (strong, nonatomic) UICollectionView *collectionView;
@@ -96,6 +99,7 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
         
         
         self.editing = NO;
+        _downloadingBookQueue = [NSMutableArray array];
     }
     return self;
 }
@@ -104,6 +108,7 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    BOOL startDownload = NO;
     
     if (downloadUrl) {
         NSString *name = [downloadUrl lastPathComponent];
@@ -113,19 +118,26 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
         NSFileManager *fileManager = [NSFileManager defaultManager];
         
         if ([fileManager fileExistsAtPath:filePath] ||
-            ![[[filePath lastPathComponent] pathExtension] isEqual:@"epub"]) {
+            ![[[filePath lastPathComponent] pathExtension] isEqual:@"epub"] && false) {
             downloadUrl = nil;
         } else {
             UIImageView *imageView = [[UIImageView alloc] init];
             imageView.frame = CGRectMake(0, 0, 60, 80);
             imageView.backgroundColor = [UIColor whiteColor];
-            _downloadingBook = [[Book alloc] initWithDictionary:
-                                [NSDictionary dictionaryWithObjectsAndKeys:
-                                 imageView, @"imageView",
-                                 @"0", @"progress",
-                                 filePath, @"fileName",
-                                 nil]];
-            [self.repository addBook:_downloadingBook];
+            Book * book = [[Book alloc] initWithDictionary:
+                          [NSDictionary dictionaryWithObjectsAndKeys:
+                           imageView, @"imageView",
+                           @"0", @"progress",
+                           filePath, @"fileName",
+                           downloadUrl, @"downloadUrl",
+                           nil]];
+            [self.repository addBook:book];
+            if (!_downloadingBook) {
+                startDownload = YES;
+                _downloadingBook = book;
+            } else {
+                [_downloadingBookQueue enqueue:book];
+            }
         }
     }
     
@@ -181,7 +193,7 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
     
     [self.view addSubview:self.collectionView];
     
-    if (downloadUrl) {
+    if (startDownload) {
         NSURLRequest *request = [NSURLRequest requestWithURL:downloadUrl];
         NSURLConnection *connection = [[NSURLConnection alloc]
                                        initWithRequest:request delegate:self startImmediately:YES];
@@ -392,6 +404,12 @@ canMoveItemAtIndexPath:(NSIndexPath *)indexPath
     
     if ([self.downloadData writeToFile:filePath atomically:YES]) {
         NSLog(@"%@", filePath);
+    }
+    _downloadingBook = _downloadingBookQueue.dequeue;
+    if (_downloadingBook) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:_downloadingBook.downloadUrl];
+        NSURLConnection *connection = [[NSURLConnection alloc]
+                                       initWithRequest:request delegate:self startImmediately:YES];
     }
 }
 

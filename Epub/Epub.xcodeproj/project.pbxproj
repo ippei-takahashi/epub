@@ -65,6 +65,7 @@
 		F640D36F19BF11D50018A1D7 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = F640D36819BF11D50018A1D7 /* zip.c */; };
 		F640D37019BF11D50018A1D7 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = F640D36B19BF11D50018A1D7 /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F6F167BD19D40BAA00EDC296 /* btn_library_5s.png in Resources */ = {isa = PBXBuildFile; fileRef = F6F167BC19D40BAA00EDC296 /* btn_library_5s.png */; };
+		F6F167C119D815D100EDC296 /* NSMutableArray+QueueAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F167C019D815D100EDC296 /* NSMutableArray+QueueAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +185,8 @@
 		F640D36A19BF11D50018A1D7 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		F640D36B19BF11D50018A1D7 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
 		F6F167BC19D40BAA00EDC296 /* btn_library_5s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_library_5s.png; sourceTree = "<group>"; };
+		F6F167BF19D815D100EDC296 /* NSMutableArray+QueueAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+QueueAdditions.h"; sourceTree = "<group>"; };
+		F6F167C019D815D100EDC296 /* NSMutableArray+QueueAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+QueueAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +357,8 @@
 				F640D2FA19B05E7D0018A1D7 /* CommonUtils.m */,
 				F640D2FB19B05E7D0018A1D7 /* Net.h */,
 				F640D2FC19B05E7D0018A1D7 /* Net.m */,
+				F6F167BF19D815D100EDC296 /* NSMutableArray+QueueAdditions.h */,
+				F6F167C019D815D100EDC296 /* NSMutableArray+QueueAdditions.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -590,6 +595,7 @@
 				F640D32E19BEEDAF0018A1D7 /* CSection.m in Sources */,
 				EEB1E9FE19AC71F200BE3A37 /* DraggableCollectionViewFlowLayout.m in Sources */,
 				F640D35919BEFF0F0018A1D7 /* CTidy.m in Sources */,
+				F6F167C119D815D100EDC296 /* NSMutableArray+QueueAdditions.m in Sources */,
 				EEB1E9D119AC717D00BE3A37 /* BooksViewController.m in Sources */,
 				EEB1EA0B19AC755C00BE3A37 /* BooksViewCell.m in Sources */,
 				F640D2FE19B05E7D0018A1D7 /* Net.m in Sources */,

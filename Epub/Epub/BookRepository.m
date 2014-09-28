@@ -30,7 +30,7 @@
 
 - (void)addBook:(Book *)book
 {
-    [self.books addObject:book];
+    [self.books insertObject:book atIndex:0];
     [self saveBookNames];
 }
 
