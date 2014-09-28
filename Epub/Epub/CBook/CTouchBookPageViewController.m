@@ -13,6 +13,10 @@
 #import "CSection.h"
 #import "CommonUtils.h"
 
+@interface CTouchBookPageViewController()
+@property (readwrite, nonatomic, retain) UISlider *slider;
+@end
+
 @implementation CTouchBookPageViewController
 
 @synthesize URL;
@@ -20,6 +24,7 @@
 @synthesize bookContainer;
 @synthesize currentBook;
 @synthesize currentSection;
+
 
 - (void)viewDidLoad
 {
@@ -77,13 +82,13 @@
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
     [self.webView loadRequest:theRequest];
     
-    UISlider *sl = [[UISlider alloc] init];
-    sl.frame = [CommonUtils makeNormalizeRect:20.0f top:[APP BASE_HEIGHT] - 100.0f width:600.0f height:30.0f];
-    sl.minimumValue = 0.0;
-    sl.maximumValue = [self.currentBook.sections count] - 1;
-    sl.value = section;
-    [sl addTarget:self action:@selector(changeSection:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:sl];
+    _slider = [[UISlider alloc] init];
+    _slider.frame = [CommonUtils makeNormalizeRect:20.0f top:[APP BASE_HEIGHT] - 100.0f width:600.0f height:30.0f];
+    _slider.minimumValue = 0.0;
+    _slider.maximumValue = [self.currentBook.sections count] - 1;
+    _slider.value = section;
+    [_slider addTarget:self action:@selector(changeSection:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:_slider];
 
 }
 
@@ -161,6 +166,7 @@ BOOL lock = NO;
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
     [self.webView loadRequest:theRequest];
     [self saveSection:theSectionIndex - 1];
+    _slider.value = theSectionIndex - 1;
 }
 
 - (void)nextSection:(id)inSender
@@ -181,6 +187,7 @@ BOOL lock = NO;
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
     [self.webView loadRequest:theRequest];
     [self saveSection:theSectionIndex + 1];
+    _slider.value = theSectionIndex + 1;
 }
 
 - (void)changeSection:(UISlider *)slider
