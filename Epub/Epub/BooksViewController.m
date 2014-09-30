@@ -35,7 +35,6 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
 @property (nonatomic) NSMutableArray *downloadingBookQueue;
 
 
-
 @property (strong, nonatomic) UICollectionView *collectionView;
 
 @property (nonatomic) BookRepository *repository;
@@ -45,6 +44,8 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
 @implementation BooksViewController
 
 @synthesize downloadUrl;
+
+float topCriteria = 0;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,9 +57,20 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
         // ファイルマネージャを作成
         NSFileManager *fileManager = [NSFileManager defaultManager];
         
-        
+
 //        NSArray *list = @[@"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/default.epub",
-//                         @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga.epub"];
+//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga.epub",
+//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga2.epub",
+//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga3.epub",
+//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga4.epub",
+//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga5.epub",
+//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga6.epub",
+//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga7.epub",
+//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga8.epub",
+//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga9.epub",
+//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga10.epub",
+//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga11.epub",
+//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga12.epub"];
         
         NSArray *list = [self.repository loadBookNames];
         
@@ -100,6 +112,7 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
         
         self.editing = NO;
         _downloadingBookQueue = [NSMutableArray array];
+        topCriteria = 0;
     }
     return self;
 }
@@ -118,7 +131,7 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
         NSFileManager *fileManager = [NSFileManager defaultManager];
         
         if ([fileManager fileExistsAtPath:filePath] ||
-            ![[[filePath lastPathComponent] pathExtension] isEqual:@"epub"] && false) {
+            ![[[filePath lastPathComponent] pathExtension] isEqual:@"epub"]) {
             downloadUrl = nil;
         } else {
             UIImageView *imageView = [[UIImageView alloc] init];
@@ -171,19 +184,25 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
     [UINavigationBar appearance].barTintColor = [UIColor blackColor];
     [self.view addSubview:navBar];
     
-    
     float previewTop = statusBarHeight + [CommonUtils unnormalizeHeight:navBar.frame.size.height];
     
+    UIScrollView *sv = [[UIScrollView alloc] init];
+    sv.frame = [CommonUtils makeNormalizeRect:0 top:previewTop width:[APP BASE_WIDTH] height:[APP BASE_HEIGHT] - previewTop];
+    sv.bounces = NO;
+
+    for (int i = 0; i < [self.repository.books count] / 3 + 1; i++) {
+        UIImageView *backgroundImageView = [[UIImageView alloc]
+                                            initWithImage:[UIImage imageNamed:i == 0 ? @"hondana_head.jpg" : @"hondana.jpg"]];
+        backgroundImageView.frame = [CommonUtils makeNormalizeRect:0 top: topCriteria width:[APP BASE_WIDTH] height:222.0];
+        [sv addSubview:backgroundImageView];
+        topCriteria += 222.0;
+    }
     
-    UIImageView *backgroundImageView = [[UIImageView alloc]
-                                        initWithImage:[UIImage imageNamed:@"hondana_5s.jpg"]];
-    backgroundImageView.frame = [CommonUtils makeNormalizeRect:0 top:previewTop width:[APP BASE_WIDTH] height:[APP BASE_HEIGHT]];
-    [self.view addSubview:backgroundImageView];
     
     
     DraggableCollectionViewFlowLayout *layout = [[DraggableCollectionViewFlowLayout alloc] init];
     self.collectionView = [[UICollectionView alloc]
-                           initWithFrame:[CommonUtils makeNormalizeRect:40 top:160 width:[APP BASE_WIDTH] - 80 height:[APP BASE_HEIGHT]]
+                           initWithFrame:[CommonUtils makeNormalizeRect:80 top:40 width:480 height:topCriteria]
                            collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionView.draggable = YES;
@@ -191,13 +210,16 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
     [self.collectionView setDataSource:self];
     [self.collectionView setDelegate:self];
     
-    [self.view addSubview:self.collectionView];
+    [sv addSubview:self.collectionView];
     
     if (startDownload) {
         NSURLRequest *request = [NSURLRequest requestWithURL:downloadUrl];
         NSURLConnection *connection = [[NSURLConnection alloc]
                                        initWithRequest:request delegate:self startImmediately:YES];
     }
+    
+    sv.contentSize = CGSizeMake([APP WINDOW_WIDTH], topCriteria  * [APP WINDOW_HEIGHT] / [APP BASE_HEIGHT]);
+    [self.view addSubview:sv];
     
 }
 
@@ -353,7 +375,7 @@ canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(60, 130);
+    return CGSizeMake(60, 101);
 }
 
 

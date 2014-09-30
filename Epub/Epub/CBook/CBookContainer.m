@@ -35,17 +35,21 @@
                    stringByAppendingPathComponent:[URL.lastPathComponent stringByDeletingPathExtension]];
         
         NSString *inPath = URL.path;
-        
-        ZipArchive *za = [[ZipArchive alloc] init];
-        
-        if([za UnzipOpenFile:inPath]) {
-            BOOL ret = [za UnzipFileTo:[outPath stringByAppendingPathComponent:@"ext"] overWrite:YES];
-            if(NO == ret) {
-                // error handling
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+
+        if (![fileManager fileExistsAtPath:[outPath stringByAppendingPathComponent:@"ext"]]) {
+            ZipArchive *za = [[ZipArchive alloc] init];
+            
+            if([za UnzipOpenFile:inPath]) {
+                BOOL ret = [za UnzipFileTo:[outPath stringByAppendingPathComponent:@"ext"] overWrite:YES];
+                if(NO == ret) {
+                    // error handling
+                }
+                [za UnzipCloseFile];
             }
-            [za UnzipCloseFile];
+            [za release];
         }
-        [za release];
+
       	NSURL *theContainerURL = [NSURL fileURLWithPath:[outPath stringByAppendingPathComponent:@"ext/META-INF/container.xml"]];
         
         NSError *theError = NULL;

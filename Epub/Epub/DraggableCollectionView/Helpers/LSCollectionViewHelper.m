@@ -236,7 +236,10 @@ typedef NS_ENUM(NSInteger, _ScrollingDirection) {
             UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
             cell.highlighted = NO;
             [mockCell removeFromSuperview];
-            mockCell = [[UIImageView alloc] initWithFrame:((BooksViewCell *)cell).imageView.frame];
+            CGRect frame = ((BooksViewCell *)cell).imageView.frame;
+            frame.origin.x = cell.frame.origin.x;
+            frame.origin.y = cell.frame.origin.y;
+            mockCell = [[UIImageView alloc] initWithFrame:frame];
             mockCell.image = [self imageFromCell:cell];
             mockCell.backgroundColor = [UIColor whiteColor];
             mockCenter = mockCell.center;

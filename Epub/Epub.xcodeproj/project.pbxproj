@@ -34,13 +34,6 @@
 		F640D2F719B05E220018A1D7 /* book.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F640D2F619B05E220018A1D7 /* book.jpg */; };
 		F640D2FD19B05E7D0018A1D7 /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D2FA19B05E7D0018A1D7 /* CommonUtils.m */; };
 		F640D2FE19B05E7D0018A1D7 /* Net.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D2FC19B05E7D0018A1D7 /* Net.m */; };
-		F640D32219BEEDAF0018A1D7 /* default.epub in Resources */ = {isa = PBXBuildFile; fileRef = F640D30719BEEDAF0018A1D7 /* default.epub */; };
-		F640D32319BEEDAF0018A1D7 /* Dumas - The Count of Monte Cristo.epub in Resources */ = {isa = PBXBuildFile; fileRef = F640D30819BEEDAF0018A1D7 /* Dumas - The Count of Monte Cristo.epub */; };
-		F640D32419BEEDAF0018A1D7 /* EPUBBestPractices-1_0_3.epub in Resources */ = {isa = PBXBuildFile; fileRef = F640D30919BEEDAF0018A1D7 /* EPUBBestPractices-1_0_3.epub */; };
-		F640D32519BEEDAF0018A1D7 /* melville-moby-dick.epub in Resources */ = {isa = PBXBuildFile; fileRef = F640D30A19BEEDAF0018A1D7 /* melville-moby-dick.epub */; };
-		F640D32619BEEDAF0018A1D7 /* pg31232-images.epub in Resources */ = {isa = PBXBuildFile; fileRef = F640D30B19BEEDAF0018A1D7 /* pg31232-images.epub */; };
-		F640D32719BEEDAF0018A1D7 /* Stross - Accelerando.epub in Resources */ = {isa = PBXBuildFile; fileRef = F640D30C19BEEDAF0018A1D7 /* Stross - Accelerando.epub */; };
-		F640D32819BEEDAF0018A1D7 /* Treasure_Island.epub in Resources */ = {isa = PBXBuildFile; fileRef = F640D30D19BEEDAF0018A1D7 /* Treasure_Island.epub */; };
 		F640D32919BEEDAF0018A1D7 /* CBook.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D31019BEEDAF0018A1D7 /* CBook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F640D32A19BEEDAF0018A1D7 /* CBookContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D31219BEEDAF0018A1D7 /* CBookContainer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F640D32B19BEEDAF0018A1D7 /* CBookLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = F640D31419BEEDAF0018A1D7 /* CBookLibrary.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -66,6 +59,8 @@
 		F640D37019BF11D50018A1D7 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = F640D36B19BF11D50018A1D7 /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F6F167BD19D40BAA00EDC296 /* btn_library_5s.png in Resources */ = {isa = PBXBuildFile; fileRef = F6F167BC19D40BAA00EDC296 /* btn_library_5s.png */; };
 		F6F167C119D815D100EDC296 /* NSMutableArray+QueueAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F167C019D815D100EDC296 /* NSMutableArray+QueueAdditions.m */; };
+		F6F167C419DA7D5A00EDC296 /* hondana_head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6F167C219DA7D5A00EDC296 /* hondana_head.jpg */; };
+		F6F167C519DA7D5A00EDC296 /* hondana.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6F167C319DA7D5A00EDC296 /* hondana.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,13 +124,6 @@
 		F640D30319B05FE30018A1D7 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
 		F640D30419B05FE30018A1D7 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
 		F640D30519B05FE30018A1D7 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
-		F640D30719BEEDAF0018A1D7 /* default.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.epub; sourceTree = "<group>"; };
-		F640D30819BEEDAF0018A1D7 /* Dumas - The Count of Monte Cristo.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dumas - The Count of Monte Cristo.epub"; sourceTree = "<group>"; };
-		F640D30919BEEDAF0018A1D7 /* EPUBBestPractices-1_0_3.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EPUBBestPractices-1_0_3.epub"; sourceTree = "<group>"; };
-		F640D30A19BEEDAF0018A1D7 /* melville-moby-dick.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "melville-moby-dick.epub"; sourceTree = "<group>"; };
-		F640D30B19BEEDAF0018A1D7 /* pg31232-images.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pg31232-images.epub"; sourceTree = "<group>"; };
-		F640D30C19BEEDAF0018A1D7 /* Stross - Accelerando.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Stross - Accelerando.epub"; sourceTree = "<group>"; };
-		F640D30D19BEEDAF0018A1D7 /* Treasure_Island.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = Treasure_Island.epub; sourceTree = "<group>"; };
 		F640D30F19BEEDAF0018A1D7 /* CBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBook.h; sourceTree = "<group>"; };
 		F640D31019BEEDAF0018A1D7 /* CBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBook.m; sourceTree = "<group>"; };
 		F640D31119BEEDAF0018A1D7 /* CBookContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBookContainer.h; sourceTree = "<group>"; };
@@ -171,8 +159,6 @@
 		F640D34D19BEFF0F0018A1D7 /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
 		F640D34E19BEFF0F0018A1D7 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
 		F640D35A19BF04E20018A1D7 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		F640D35C19BF08C90018A1D7 /* oreilly-978-4-87311-522-1e.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oreilly-978-4-87311-522-1e.epub"; sourceTree = "<group>"; };
-		F640D35D19BF08C90018A1D7 /* oreilly-978-4-87311-542-9e.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oreilly-978-4-87311-542-9e.epub"; sourceTree = "<group>"; };
 		F640D36119BF11D50018A1D7 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		F640D36219BF11D50018A1D7 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		F640D36319BF11D50018A1D7 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -187,6 +173,8 @@
 		F6F167BC19D40BAA00EDC296 /* btn_library_5s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_library_5s.png; sourceTree = "<group>"; };
 		F6F167BF19D815D100EDC296 /* NSMutableArray+QueueAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+QueueAdditions.h"; sourceTree = "<group>"; };
 		F6F167C019D815D100EDC296 /* NSMutableArray+QueueAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+QueueAdditions.m"; sourceTree = "<group>"; };
+		F6F167C219DA7D5A00EDC296 /* hondana_head.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hondana_head.jpg; sourceTree = "<group>"; };
+		F6F167C319DA7D5A00EDC296 /* hondana.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hondana.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,7 +239,6 @@
 			isa = PBXGroup;
 			children = (
 				F640D35F19BF11D50018A1D7 /* ZipArchive */,
-				F640D30619BEEDAF0018A1D7 /* Books */,
 				F640D30E19BEEDAF0018A1D7 /* CBook */,
 				EEB1E9EF19AC71F200BE3A37 /* DraggableCollectionView */,
 				EEB1E9C619AC717D00BE3A37 /* AppDelegate.h */,
@@ -346,6 +333,8 @@
 				F6F167BC19D40BAA00EDC296 /* btn_library_5s.png */,
 				F640D2F619B05E220018A1D7 /* book.jpg */,
 				F640D2F419B05D8B0018A1D7 /* hondana_5s.jpg */,
+				F6F167C219DA7D5A00EDC296 /* hondana_head.jpg */,
+				F6F167C319DA7D5A00EDC296 /* hondana.jpg */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -374,22 +363,6 @@
 				F640D30519B05FE30018A1D7 /* GAITracker.h */,
 			);
 			path = GAI;
-			sourceTree = "<group>";
-		};
-		F640D30619BEEDAF0018A1D7 /* Books */ = {
-			isa = PBXGroup;
-			children = (
-				F640D35C19BF08C90018A1D7 /* oreilly-978-4-87311-522-1e.epub */,
-				F640D35D19BF08C90018A1D7 /* oreilly-978-4-87311-542-9e.epub */,
-				F640D30719BEEDAF0018A1D7 /* default.epub */,
-				F640D30819BEEDAF0018A1D7 /* Dumas - The Count of Monte Cristo.epub */,
-				F640D30919BEEDAF0018A1D7 /* EPUBBestPractices-1_0_3.epub */,
-				F640D30A19BEEDAF0018A1D7 /* melville-moby-dick.epub */,
-				F640D30B19BEEDAF0018A1D7 /* pg31232-images.epub */,
-				F640D30C19BEEDAF0018A1D7 /* Stross - Accelerando.epub */,
-				F640D30D19BEEDAF0018A1D7 /* Treasure_Island.epub */,
-			);
-			path = Books;
 			sourceTree = "<group>";
 		};
 		F640D30E19BEEDAF0018A1D7 /* CBook */ = {
@@ -559,18 +532,13 @@
 			files = (
 				EEB1E9D319AC717D00BE3A37 /* Images.xcassets in Resources */,
 				EEB1E9C219AC717D00BE3A37 /* InfoPlist.strings in Resources */,
-				F640D32819BEEDAF0018A1D7 /* Treasure_Island.epub in Resources */,
-				F640D32219BEEDAF0018A1D7 /* default.epub in Resources */,
+				F6F167C519DA7D5A00EDC296 /* hondana.jpg in Resources */,
 				F619B58F19D2957500407736 /* btn_store_5s.png in Resources */,
-				F640D32619BEEDAF0018A1D7 /* pg31232-images.epub in Resources */,
-				F640D32319BEEDAF0018A1D7 /* Dumas - The Count of Monte Cristo.epub in Resources */,
-				F640D32719BEEDAF0018A1D7 /* Stross - Accelerando.epub in Resources */,
 				F6F167BD19D40BAA00EDC296 /* btn_library_5s.png in Resources */,
 				F640D2F719B05E220018A1D7 /* book.jpg in Resources */,
 				F640D2F519B05D8B0018A1D7 /* hondana_5s.jpg in Resources */,
 				F619B58E19D2957500407736 /* btn_delete_5s.png in Resources */,
-				F640D32419BEEDAF0018A1D7 /* EPUBBestPractices-1_0_3.epub in Resources */,
-				F640D32519BEEDAF0018A1D7 /* melville-moby-dick.epub in Resources */,
+				F6F167C419DA7D5A00EDC296 /* hondana_head.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
