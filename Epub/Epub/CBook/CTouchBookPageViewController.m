@@ -15,20 +15,23 @@
 
 @interface CTouchBookPageViewController()
 @property (readwrite, nonatomic, retain) UISlider *slider;
+@property (readwrite, nonatomic, retain) UIScrollView *scrollView;
 @end
 
 @implementation CTouchBookPageViewController
 
 @synthesize URL;
-@synthesize webView;
 @synthesize bookContainer;
 @synthesize currentBook;
 @synthesize currentSection;
+@synthesize webViews;
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.webViews = [NSMutableArray array];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -38,7 +41,7 @@
     
     UINavigationItem *title = [CommonUtils title:@""];
     UIButton *customBackButtonView = [UIButton buttonWithType:UIButtonTypeCustom];
-    customBackButtonView.frame =  [CommonUtils makeNormalizeRect:0 top:0 width:162.0f height:65.0f];
+    customBackButtonView.frame = CGRectMake(0, 0, 81.0f, 32.0f);
     [customBackButtonView setBackgroundImage:[UIImage imageNamed:@"btn_library_5s.png"] forState:UIControlStateNormal];
     [customBackButtonView addTarget:self
                              action:@selector(sendToTop:) forControlEvents:UIControlEventTouchUpInside];
@@ -56,21 +59,6 @@
     
     float previewTop = statusBarHeight + [CommonUtils unnormalizeHeight:navBar.frame.size.height];
 
-    
-    webView = [[UIWebView alloc] init];
-    webView.scalesPageToFit = YES;
-    webView.frame = [CommonUtils makeNormalizeRect:0 top:previewTop width:[APP BASE_WIDTH] height:[APP BASE_HEIGHT] - previewTop];
-    [self.view addSubview:self.webView];
-    
-    
-    UIPanGestureRecognizer *backGestureRecognizer
-    = [[UIPanGestureRecognizer alloc] initWithTarget:self
-                                              action:@selector(backGesture:)];
-    [self.view addGestureRecognizer:backGestureRecognizer];
-    
-    self.webView.scrollView.delegate = self;
-    self.webView.scrollView.bounces = YES;
-    
     bookContainer = [[CBookContainer alloc] initWithURL:URL];
     currentBook = [[self.bookContainer.books objectAtIndex:0] retain];
     
@@ -79,14 +67,39 @@
                                          [self.currentBook.rootURL absoluteString]]];
     currentSection = [[self.currentBook.sections objectAtIndex:section] retain];
     
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
-    [self.webView loadRequest:theRequest];
+    _scrollView = [[UIScrollView alloc] init];
+    _scrollView.pagingEnabled = YES;
+    _scrollView.delegate = self;
+    _scrollView.frame = [CommonUtils makeNormalizeRect:0 top:previewTop width:[APP BASE_WIDTH] height:[APP BASE_HEIGHT] - previewTop];
+    
+    CGSize s = _scrollView.frame.size;
+    CGRect contentRect = CGRectMake(0, 0, s.width * [self.currentBook.sections count], s.height);
+    UIView *contentView = [[UIView alloc] initWithFrame:contentRect];
+    
+    for (int i = 0; i < [self.currentBook.sections count]; i++) {
+        UIWebView *webView = [[UIWebView alloc] init];
+        webView.scalesPageToFit = YES;
+        webView.frame = [CommonUtils makeNormalizeRect:([self.currentBook.sections count] - 1 - i) * [APP BASE_WIDTH] top:0 width:[APP BASE_WIDTH] height:[APP BASE_HEIGHT] - previewTop];
+        [contentView addSubview:webView];
+        webView.dataDetectorTypes = UIDataDetectorTypeNone;
+        
+        [self.webViews addObject:webView];
+    }
+    
+    [self loadPage:section];
+    
+    
+    [_scrollView addSubview:contentView];
+    _scrollView.contentSize = contentView.frame.size;
+    _scrollView.contentOffset = CGPointMake([APP WINDOW_WIDTH] * ([self.currentBook.sections count] - 1 - section), 0);
+    [self.view addSubview:_scrollView];
+
     
     _slider = [[UISlider alloc] init];
     _slider.frame = [CommonUtils makeNormalizeRect:20.0f top:[APP BASE_HEIGHT] - 100.0f width:600.0f height:30.0f];
     _slider.minimumValue = 0.0;
     _slider.maximumValue = [self.currentBook.sections count] - 1;
-    _slider.value = section;
+    _slider.value = [self.currentBook.sections count] - 1 - section;
     [_slider addTarget:self action:@selector(changeSection:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_slider];
 
@@ -94,15 +107,56 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if ([scrollView contentOffset].x > [scrollView contentSize].width - scrollView.frame.size.width + 60.0f) {
-        [scrollView setScrollEnabled:NO];
-        [self nextSection:scrollView];
-        [scrollView setScrollEnabled:YES];
-    } else if([scrollView contentOffset].x < -60.0f) {
-        [scrollView setScrollEnabled:NO];
-        [self prevSection:scrollView];
-        [scrollView setScrollEnabled:YES];
+    CGPoint offset = scrollView.contentOffset;
+    long page = [self.currentBook.sections count] - 1 - (offset.x - ([APP WINDOW_WIDTH] / 2)) / [APP WINDOW_WIDTH];
+    NSUInteger theSectionIndex = [self.currentBook.sections indexOfObject:self.currentSection];
+
+    
+    // 現在表示しているページ番号と異なる場合には、
+    // ページ切り替わりと判断し、処理を呼び出します。
+    if (theSectionIndex != page) {
+        self.currentSection = [self.currentBook.sections objectAtIndex:page];
+        [self saveSection:page];
+        _slider.value = [self.currentBook.sections count] - 1 - (page);
+        
+        [self loadPage:page];
     }
+}
+
+- (void)loadPage:(long)page {
+    long nextPage = page + 1;
+    long prevPage = page - 1;
+    
+    if (nextPage < [self.currentBook.sections count]) {
+        UIWebView *webView = [self.webViews objectAtIndex:nextPage];
+        CSection *section = [self.currentBook.sections objectAtIndex:nextPage];
+        NSURLRequest *theRequest = [NSURLRequest requestWithURL:section.URL];
+        [webView loadRequest:theRequest];
+    }
+    
+    if (prevPage >= 0) {
+        UIWebView *webView = [self.webViews objectAtIndex:prevPage];
+        CSection *section = [self.currentBook.sections objectAtIndex:prevPage];
+        NSURLRequest *theRequest = [NSURLRequest requestWithURL:section.URL];
+        [webView loadRequest:theRequest];
+    }
+    
+    long nextNextPage = page + 2;
+    long prevPrevPage = page - 2;
+    
+    if (nextNextPage < [self.currentBook.sections count]) {
+        UIWebView *webView = [self.webViews objectAtIndex:nextNextPage];
+        [webView loadHTMLString:@"" baseURL:nil];
+    }
+    
+    if (prevPrevPage >= 0) {
+        UIWebView *webView = [self.webViews objectAtIndex:prevPrevPage];
+        [webView loadHTMLString:@"" baseURL:nil];
+    }
+    
+    UIWebView *webView = [self.webViews objectAtIndex:page];
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
+    [webView loadRequest:theRequest];
 }
 
 
@@ -128,76 +182,16 @@
     [super dealloc];
 }
 
-- (void)backGesture:(UIPanGestureRecognizer *)sender
-{
-    CGPoint translation = [sender translationInView:sender.view];
-    //閾値を良い感じに調整
-    if (60.0 < translation.x) {
-        [self prevSection:sender];
-        [sender setTranslation:CGPointZero inView:self.view];
-    } else if (-60.0 > translation.x) {
-        [self nextSection:sender];
-        [sender setTranslation:CGPointZero inView:self.view];
-    }
-}
-
-BOOL lock = NO;
-
-- (void) unlock
-{
-    lock = NO;
-}
-
-
-- (void)prevSection:(id)inSender
-{
-    if (lock) {
-        return;
-    }
-    lock = YES;
-    
-    [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(unlock) userInfo:nil repeats:NO];
-    NSUInteger theSectionIndex = [self.currentBook.sections indexOfObject:self.currentSection];
-    if (theSectionIndex == 0) {
-        return;
-    }
-    
-    self.currentSection = [self.currentBook.sections objectAtIndex:theSectionIndex - 1];
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
-    [self.webView loadRequest:theRequest];
-    [self saveSection:theSectionIndex - 1];
-    _slider.value = theSectionIndex - 1;
-}
-
-- (void)nextSection:(id)inSender
-{
-    if (lock) {
-        return;
-    }
-    lock = YES;
-    
-    [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(unlock) userInfo:nil repeats:NO];
-    NSUInteger theSectionIndex = [self.currentBook.sections indexOfObject:self.currentSection];
-    if (theSectionIndex == [self.currentBook.sections count] - 1) {
-        return;
-    }
-    
-    
-    self.currentSection = [self.currentBook.sections objectAtIndex:theSectionIndex + 1];
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
-    [self.webView loadRequest:theRequest];
-    [self saveSection:theSectionIndex + 1];
-    _slider.value = theSectionIndex + 1;
-}
-
 - (void)changeSection:(UISlider *)slider
 {
-    NSUInteger theSectionIndex = slider.value;
-    self.currentSection = [self.currentBook.sections objectAtIndex:theSectionIndex];
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
-    [self.webView loadRequest:theRequest];
-    [self saveSection:theSectionIndex];
+    CGPoint offset;
+    
+    offset.x = (int)slider.value * [APP WINDOW_WIDTH];
+    offset.y = 0.0f;
+    
+    [_scrollView setContentOffset:offset animated:NO];
 }
+
 
 - (void)saveSection:(NSUInteger)section
 {

@@ -1,0 +1,1 @@
+/Users/pony/Documents/epub_workspace/Epub/app_file/Applications/Epub.app

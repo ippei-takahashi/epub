@@ -24,7 +24,7 @@
     
     UINavigationItem *title = [CommonUtils title:@"ストア"];
     UIButton *customBackButtonView = [UIButton buttonWithType:UIButtonTypeCustom];
-    customBackButtonView.frame =  [CommonUtils makeNormalizeRect:0 top:0 width:162.0f height:65.0f];
+    customBackButtonView.frame = CGRectMake(0, 0, 81.0f, 32.0f);
     [customBackButtonView setBackgroundImage:[UIImage imageNamed:@"btn_library_5s.png"] forState:UIControlStateNormal];
     [customBackButtonView addTarget:self
                              action:@selector(sendToTop:) forControlEvents:UIControlEventTouchUpInside];

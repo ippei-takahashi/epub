@@ -37,6 +37,9 @@
 - (void)removeBook:(Book *)book
 {
     [self.books removeObject:book];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager removeItemAtPath:book.fileName error:nil];
+    [fileManager removeItemAtPath:[book.fileName stringByDeletingPathExtension] error:nil];
     [self saveBookNames];
 }
 

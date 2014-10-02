@@ -19,6 +19,7 @@
 #import "CBookContainer.h"
 #import "NSMutableArray+QueueAdditions.h"
 #import <objc/runtime.h>
+#import <math.h>
 
 static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdentifier";
 
@@ -32,6 +33,7 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
 @property (nonatomic) NSUInteger totalBytes;
 @property (nonatomic) NSUInteger receivedBytes;
 @property (nonatomic) Book *downloadingBook;
+@property (nonatomic) Book *deleteBook;
 @property (nonatomic) NSMutableArray *downloadingBookQueue;
 
 
@@ -88,7 +90,7 @@ float topCriteria = 0;
             }
             
             UIImageView *imageView = [[UIImageView alloc] init];
-            imageView.frame = CGRectMake(0, 0, 60, 80);
+            imageView.frame = [CommonUtils makeNormalizeRect:0 top:0 width:112.0f height:160.0f];
             
             CBookContainer *bookContainer = [[CBookContainer alloc] initWithURL:[NSURL fileURLWithPath:fileName]];
             UIImage *image = ((CBook *)[bookContainer.books objectAtIndex:0]).cover;
@@ -135,7 +137,7 @@ float topCriteria = 0;
             downloadUrl = nil;
         } else {
             UIImageView *imageView = [[UIImageView alloc] init];
-            imageView.frame = CGRectMake(0, 0, 60, 80);
+            imageView.frame = [CommonUtils makeNormalizeRect:0 top:0 width:112.0f height:160.0f];
             imageView.backgroundColor = [UIColor whiteColor];
             Book * book = [[Book alloc] initWithDictionary:
                           [NSDictionary dictionaryWithObjectsAndKeys:
@@ -160,7 +162,7 @@ float topCriteria = 0;
     
     UINavigationItem *title = [CommonUtils title];
     UIButton *customBackButtonView = [UIButton buttonWithType:UIButtonTypeCustom];
-    customBackButtonView.frame =  [CommonUtils makeNormalizeRect:0 top:0 width:92.0f height:65.0f];
+    customBackButtonView.frame = CGRectMake(0, 0, 46.0f, 32.0f);
     [customBackButtonView setBackgroundImage:[UIImage imageNamed:@"btn_store_5s.png"] forState:UIControlStateNormal];
     [customBackButtonView addTarget:self
                              action:@selector(sendToStore:) forControlEvents:UIControlEventTouchUpInside];
@@ -168,7 +170,7 @@ float topCriteria = 0;
     
     
     UIButton *customNextButtonView = [UIButton buttonWithType:UIButtonTypeCustom];
-    customNextButtonView.frame =  [CommonUtils makeNormalizeRect:0 top:0 width:92.0f height:65.0f];
+    customNextButtonView.frame = CGRectMake(0, 0, 46.0f, 32.0f);
     [customNextButtonView setBackgroundImage:[UIImage imageNamed:@"btn_delete_5s.png"] forState:UIControlStateNormal];
     [customNextButtonView addTarget:self
                              action:@selector(toggleDeleteMode:) forControlEvents:UIControlEventTouchUpInside];
@@ -190,7 +192,7 @@ float topCriteria = 0;
     sv.frame = [CommonUtils makeNormalizeRect:0 top:previewTop width:[APP BASE_WIDTH] height:[APP BASE_HEIGHT] - previewTop];
     sv.bounces = NO;
 
-    for (int i = 0; i < [self.repository.books count] / 3 + 1; i++) {
+    for (int i = 0; i < fmax([self.repository.books count] / 3 + 1, 5); i++) {
         UIImageView *backgroundImageView = [[UIImageView alloc]
                                             initWithImage:[UIImage imageNamed:i == 0 ? @"hondana_head.jpg" : @"hondana.jpg"]];
         backgroundImageView.frame = [CommonUtils makeNormalizeRect:0 top: topCriteria width:[APP BASE_WIDTH] height:222.0];
@@ -202,7 +204,7 @@ float topCriteria = 0;
     
     DraggableCollectionViewFlowLayout *layout = [[DraggableCollectionViewFlowLayout alloc] init];
     self.collectionView = [[UICollectionView alloc]
-                           initWithFrame:[CommonUtils makeNormalizeRect:80 top:40 width:480 height:topCriteria]
+                           initWithFrame:[CommonUtils makeNormalizeRect:84 top:40 width:480 height:topCriteria]
                            collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionView.draggable = YES;
@@ -284,7 +286,10 @@ float topCriteria = 0;
             [cell addSubview:deleteButtonView];
             
             void (^removeBook)(id) = ^(id selector) {
-                [self removeBook:selector withBook:self.repository.books[indexPath.row]];
+                _deleteBook = self.repository.books[indexPath.row];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"確認" message:@"この本を削除してもよろしいですか？" delegate:self cancelButtonTitle:@"いいえ" otherButtonTitles:@"はい", nil];
+                alert.delegate = self;
+                [alert show];
             };
             SEL sel = NSSelectorFromString([NSString stringWithFormat:@"removeBook%ld", indexPath.row]);
             IMP imp = imp_implementationWithBlock(removeBook);
@@ -295,7 +300,7 @@ float topCriteria = 0;
     } else {
         UIProgressView *pv = [[UIProgressView alloc]
                               initWithProgressViewStyle:UIProgressViewStyleDefault];
-        pv.frame = CGRectMake(5, 60, 50, 10);
+        pv.frame = [CommonUtils makeNormalizeRect:10.0f top:120.0f width:100.0f height:20.0f];
         pv.progress = cell.progress;
         [cell addSubview:pv];
     }
@@ -375,7 +380,7 @@ canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(60, 101);
+    return CGSizeMake(120 * [APP WINDOW_WIDTH] / [APP BASE_WIDTH], 202 * [APP WINDOW_HEIGHT] / [APP BASE_HEIGHT]);
 }
 
 
@@ -422,10 +427,16 @@ canMoveItemAtIndexPath:(NSIndexPath *)indexPath
     filePath = [filePath stringByAppendingString:[NSString stringWithFormat:@"/%@", name]];
     
     _downloadingBook.progress = 1;
-    [self.collectionView reloadData];
     
     if ([self.downloadData writeToFile:filePath atomically:YES]) {
-        NSLog(@"%@", filePath);
+        CBookContainer *bookContainer = [[CBookContainer alloc] initWithURL:[NSURL fileURLWithPath:filePath]];
+        UIImage *image = ((CBook *)[bookContainer.books objectAtIndex:0]).cover;
+        
+        if (image) {
+            _downloadingBook.imageView.image = image;
+            _downloadingBook.imageView.backgroundColor = [UIColor clearColor];
+        }
+        [self.collectionView reloadData];
     }
     _downloadingBook = _downloadingBookQueue.dequeue;
     if (_downloadingBook) {
@@ -438,6 +449,18 @@ canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     //handle error
+}
+
+-(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (buttonIndex) {
+        case 0:
+            break;
+        case 1:
+            [self removeBook:alertView withBook:_deleteBook];
+            break;
+    }
+    
 }
 
 
