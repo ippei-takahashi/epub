@@ -300,7 +300,7 @@ float topCriteria = 0;
     } else {
         UIProgressView *pv = [[UIProgressView alloc]
                               initWithProgressViewStyle:UIProgressViewStyleDefault];
-        pv.frame = [CommonUtils makeNormalizeRect:10.0f top:120.0f width:100.0f height:20.0f];
+        pv.frame = [CommonUtils makeNormalizeRect:10.0f top:120.0f width:92.0f height:20.0f];
         pv.progress = cell.progress;
         [cell addSubview:pv];
     }

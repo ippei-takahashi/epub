@@ -100,6 +100,7 @@
     _slider.minimumValue = 0.0;
     _slider.maximumValue = [self.currentBook.sections count] - 1;
     _slider.value = [self.currentBook.sections count] - 1 - section;
+    _slider.minimumTrackTintColor = [UIColor lightGrayColor];
     [_slider addTarget:self action:@selector(changeSection:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_slider];
 
@@ -110,16 +111,27 @@
     CGPoint offset = scrollView.contentOffset;
     long page = [self.currentBook.sections count] - 1 - (offset.x - ([APP WINDOW_WIDTH] / 2)) / [APP WINDOW_WIDTH];
     NSUInteger theSectionIndex = [self.currentBook.sections indexOfObject:self.currentSection];
+    
+    if (page < 0 || page > [self.currentBook.sections count] - 1) {
+        return;
+    }
 
     
     // 現在表示しているページ番号と異なる場合には、
     // ページ切り替わりと判断し、処理を呼び出します。
     if (theSectionIndex != page) {
-        self.currentSection = [self.currentBook.sections objectAtIndex:page];
-        [self saveSection:page];
-        _slider.value = [self.currentBook.sections count] - 1 - (page);
+        dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_queue_t q_main = dispatch_get_main_queue();
         
-        [self loadPage:page];
+        dispatch_async(q_global, ^{
+            self.currentSection = [self.currentBook.sections objectAtIndex:page];
+            [self saveSection:page];
+            _slider.value = [self.currentBook.sections count] - 1 - (page);
+
+            dispatch_async(q_main, ^{
+                [self loadPage:page];
+            });
+        });
     }
 }
 
@@ -129,34 +141,42 @@
     
     if (nextPage < [self.currentBook.sections count]) {
         UIWebView *webView = [self.webViews objectAtIndex:nextPage];
-        CSection *section = [self.currentBook.sections objectAtIndex:nextPage];
-        NSURLRequest *theRequest = [NSURLRequest requestWithURL:section.URL];
-        [webView loadRequest:theRequest];
+        
+        if (!webView.loading) {
+            CSection *section = [self.currentBook.sections objectAtIndex:nextPage];
+            NSURLRequest *theRequest = [NSURLRequest requestWithURL:section.URL];
+            [webView loadRequest:theRequest];
+        }
     }
     
     if (prevPage >= 0) {
         UIWebView *webView = [self.webViews objectAtIndex:prevPage];
-        CSection *section = [self.currentBook.sections objectAtIndex:prevPage];
-        NSURLRequest *theRequest = [NSURLRequest requestWithURL:section.URL];
-        [webView loadRequest:theRequest];
+        
+        if (!webView.loading) {
+            CSection *section = [self.currentBook.sections objectAtIndex:prevPage];
+            NSURLRequest *theRequest = [NSURLRequest requestWithURL:section.URL];
+            [webView loadRequest:theRequest];
+        }
     }
     
-    long nextNextPage = page + 2;
-    long prevPrevPage = page - 2;
-    
-    if (nextNextPage < [self.currentBook.sections count]) {
-        UIWebView *webView = [self.webViews objectAtIndex:nextNextPage];
-        [webView loadHTMLString:@"" baseURL:nil];
-    }
-    
-    if (prevPrevPage >= 0) {
-        UIWebView *webView = [self.webViews objectAtIndex:prevPrevPage];
-        [webView loadHTMLString:@"" baseURL:nil];
+    for (int i = 2; i < 10; i++) {
+        [self stopLoadPage:page + i];
+        [self stopLoadPage:page - i];
     }
     
     UIWebView *webView = [self.webViews objectAtIndex:page];
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.currentSection.URL];
     [webView loadRequest:theRequest];
+}
+
+- (void)stopLoadPage:(long)page {
+    if (page < 0 || page >= [self.currentBook.sections count]) {
+        return;
+    }
+    
+    UIWebView *webView = [self.webViews objectAtIndex:page];
+    [webView stopLoading];
+    [webView loadHTMLString:@"" baseURL:nil];
 }
 
 
@@ -211,6 +231,31 @@
 - (void)sendToTop:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    for (UIWebView *wv in self.webViews) {
+        wv.delegate = nil;
+        [wv stopLoading];
+        [wv loadHTMLString:@"" baseURL:nil];
+        
+        [wv removeFromSuperview];
+        [wv release];
+        wv = nil;
+    }
+    
+    [self.webViews removeAllObjects];
+    [self.webViews release];
+    
+    for (UIView *v in self.view.subviews) {
+        [v removeFromSuperview];
+    }
+    
+    [bookContainer release];
+    [currentBook release];
+    [currentSection release];
 }
 
 
