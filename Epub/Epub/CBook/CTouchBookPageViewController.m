@@ -79,6 +79,7 @@
     for (int i = 0; i < [self.currentBook.sections count]; i++) {
         UIWebView *webView = [[UIWebView alloc] init];
         webView.scalesPageToFit = YES;
+        webView.scrollView.bounces = NO;
         webView.frame = [CommonUtils makeNormalizeRect:([self.currentBook.sections count] - 1 - i) * [APP BASE_WIDTH] top:0 width:[APP BASE_WIDTH] height:[APP BASE_HEIGHT] - previewTop];
         [contentView addSubview:webView];
         webView.dataDetectorTypes = UIDataDetectorTypeNone;

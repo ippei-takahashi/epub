@@ -18,6 +18,8 @@
 @property(nonatomic, readwrite) CGFloat STATUS_BAR_HEIGHT;
 @property(nonatomic, readwrite) CGRect BOUNDS_RECT;
 
+@property(nonatomic, readwrite) BooksViewController *booksViewController;
+
 @end
 
 @implementation AppDelegate
@@ -35,7 +37,8 @@
     self.WINDOW_HEIGHT = self.BOUNDS_RECT.size.height;
     self.BASE_WIDTH = 640.0f;
     self.BASE_HEIGHT = 1136.0f;
-
+    
+    self.downloadingBookQueue = [NSMutableArray array];
     
     return self;
 }
@@ -48,7 +51,8 @@
     [UIApplication sharedApplication].statusBarHidden = NO;
     self.STATUS_BAR_HEIGHT = [UIApplication sharedApplication].statusBarFrame.size.height;
     
-    self.window.rootViewController = [[BooksViewController alloc] init];
+    self.booksViewController = [[BooksViewController alloc] init];
+    self.window.rootViewController = self.booksViewController;
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -88,10 +92,13 @@
     
     NSURL *downloadUrl = [NSURL URLWithString:query];
     
-    BooksViewController *vc = [[BooksViewController alloc] init];
-    vc.downloadUrl = downloadUrl;
-    self.window.rootViewController = vc;
-    [self.window makeKeyAndVisible];
+    self.booksViewController.downloadUrl = downloadUrl;
+
+    [self.booksViewController dismissViewControllerAnimated:YES completion:nil];
+    if (sourceApplication) {
+        [self.booksViewController setup];
+    }
+
     return YES;
 }
 

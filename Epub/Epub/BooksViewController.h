@@ -12,4 +12,6 @@
 
 @property (readwrite, nonatomic, retain) NSURL *downloadUrl;
 
+-(void) setup;
+
 @end

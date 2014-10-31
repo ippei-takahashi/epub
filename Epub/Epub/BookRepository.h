@@ -21,5 +21,6 @@
 - (void)replaceBookAtIndex:(NSUInteger)index withBook:(Book *)book;
 
 - (NSArray *)loadBookNames;
+- (void)saveBookNames;
 
 @end

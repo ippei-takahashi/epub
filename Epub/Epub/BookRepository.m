@@ -73,7 +73,9 @@
     
     for (int i = 0; i < [self.books count]; i++) {
         Book *book = [self.books objectAtIndex:i];
-        [bookNames addObject:book.fileName];
+        if (book.progress == 1) {
+            [bookNames addObject:book.fileName];
+        }
     }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

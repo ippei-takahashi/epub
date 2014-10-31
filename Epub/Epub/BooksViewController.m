@@ -32,9 +32,7 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
 @property (nonatomic) NSMutableData *downloadData;
 @property (nonatomic) NSUInteger totalBytes;
 @property (nonatomic) NSUInteger receivedBytes;
-@property (nonatomic) Book *downloadingBook;
 @property (nonatomic) Book *deleteBook;
-@property (nonatomic) NSMutableArray *downloadingBookQueue;
 
 
 @property (strong, nonatomic) UICollectionView *collectionView;
@@ -45,6 +43,9 @@ static NSString *const CellReuseIdentifier = @"BooksCollectionViewCellReuseIdent
 
 @implementation BooksViewController
 
+static const NSInteger kTagAlertDeleteBook = 1;
+static const NSInteger kTagAlertNetworkError = 2;
+
 @synthesize downloadUrl;
 
 float topCriteria = 0;
@@ -54,28 +55,12 @@ float topCriteria = 0;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _isDeleteMode = NO;
-        _repository = [BookRepository new];
+        self.repository = [BookRepository new];
                 
         // ファイルマネージャを作成
         NSFileManager *fileManager = [NSFileManager defaultManager];
         
-
-//        NSArray *list = @[@"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/default.epub",
-//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga.epub",
-//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga2.epub",
-//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga3.epub",
-//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga4.epub",
-//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga5.epub",
-//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga6.epub",
-//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga7.epub",
-//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga8.epub",
-//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga9.epub",
-//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga10.epub",
-//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga11.epub",
-//                          @"/Users/pony/Library/Application Support/iPhone Simulator/7.1-64/Applications/D63E6EBF-FD10-44E3-A320-E9584F9BA1D9/Documents/mannga12.epub"];
-        
         NSArray *list = [self.repository loadBookNames];
-        
         
         for (NSString *fileName in list) {
             BOOL isDirectory = NO;
@@ -111,9 +96,7 @@ float topCriteria = 0;
                                        nil]]];
         }
         
-        
         self.editing = NO;
-        _downloadingBookQueue = [NSMutableArray array];
         topCriteria = 0;
     }
     return self;
@@ -123,38 +106,6 @@ float topCriteria = 0;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    BOOL startDownload = NO;
-    
-    if (downloadUrl) {
-        NSString *name = [downloadUrl lastPathComponent];
-        NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-        filePath = [filePath stringByAppendingString:[NSString stringWithFormat:@"/%@", name]];
-        
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        
-        if ([fileManager fileExistsAtPath:filePath] ||
-            ![[[filePath lastPathComponent] pathExtension] isEqual:@"epub"]) {
-            downloadUrl = nil;
-        } else {
-            UIImageView *imageView = [[UIImageView alloc] init];
-            imageView.frame = [CommonUtils makeNormalizeRect:0 top:0 width:112.0f height:160.0f];
-            imageView.backgroundColor = [UIColor whiteColor];
-            Book * book = [[Book alloc] initWithDictionary:
-                          [NSDictionary dictionaryWithObjectsAndKeys:
-                           imageView, @"imageView",
-                           @"0", @"progress",
-                           filePath, @"fileName",
-                           downloadUrl, @"downloadUrl",
-                           nil]];
-            [self.repository addBook:book];
-            if (!_downloadingBook) {
-                startDownload = YES;
-                _downloadingBook = book;
-            } else {
-                [_downloadingBookQueue enqueue:book];
-            }
-        }
-    }
     
     [self.view addSubview:[CommonUtils statusBarView]];
     
@@ -192,7 +143,7 @@ float topCriteria = 0;
     sv.frame = [CommonUtils makeNormalizeRect:0 top:previewTop width:[APP BASE_WIDTH] height:[APP BASE_HEIGHT] - previewTop];
     sv.bounces = NO;
 
-    for (int i = 0; i < fmax([self.repository.books count] / 3 + 1, 5); i++) {
+    for (int i = 0; i < fmax([self.repository.books count] / 3 + 1, 4); i++) {
         UIImageView *backgroundImageView = [[UIImageView alloc]
                                             initWithImage:[UIImage imageNamed:i == 0 ? @"hondana_head.jpg" : @"hondana.jpg"]];
         backgroundImageView.frame = [CommonUtils makeNormalizeRect:0 top: topCriteria width:[APP BASE_WIDTH] height:222.0];
@@ -214,12 +165,6 @@ float topCriteria = 0;
     
     [sv addSubview:self.collectionView];
     
-    if (startDownload) {
-        NSURLRequest *request = [NSURLRequest requestWithURL:downloadUrl];
-        NSURLConnection *connection = [[NSURLConnection alloc]
-                                       initWithRequest:request delegate:self startImmediately:YES];
-    }
-    
     sv.contentSize = CGSizeMake([APP WINDOW_WIDTH], topCriteria  * [APP WINDOW_HEIGHT] / [APP BASE_HEIGHT]);
     [self.view addSubview:sv];
     
@@ -229,12 +174,48 @@ float topCriteria = 0;
 {
     [super viewWillAppear:animated];
     
-    UILongPressGestureRecognizer *longPressGestureRecognizer =
-    [self longPressGestureRecognizerForCollectionView];
-    
-    [longPressGestureRecognizer addTarget:self
-                                   action:@selector(collectionViewDidLongPress:)];
+    [self setup];
 }
+
+-(void) setup {
+    UILongPressGestureRecognizer *longPressGestureRecognizer = [self longPressGestureRecognizerForCollectionView];
+    [longPressGestureRecognizer addTarget:self action:@selector(collectionViewDidLongPress:)];
+    
+    if (downloadUrl) {
+        NSString *name = [downloadUrl lastPathComponent];
+        NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        filePath = [filePath stringByAppendingString:[NSString stringWithFormat:@"/%@", name]];
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        
+        if ([fileManager fileExistsAtPath:filePath] ||
+            ![[[filePath lastPathComponent] pathExtension] isEqual:@"epub"]) {
+            downloadUrl = nil;
+        } else {
+            UIImageView *imageView = [[UIImageView alloc] init];
+            imageView.frame = [CommonUtils makeNormalizeRect:0 top:0 width:112.0f height:160.0f];
+            imageView.backgroundColor = [UIColor whiteColor];
+            Book * book = [[Book alloc] initWithDictionary:
+                           [NSDictionary dictionaryWithObjectsAndKeys:
+                            imageView, @"imageView",
+                            @"0", @"progress",
+                            filePath, @"fileName",
+                            downloadUrl, @"downloadUrl",
+                            nil]];
+            [self.repository addBook:book];
+            if (!APP.downloadingBook) {
+                APP.downloadingBook = book;
+                NSURLRequest *request = [NSURLRequest requestWithURL:downloadUrl];
+                NSURLConnection *connection = [[NSURLConnection alloc]
+                                               initWithRequest:request delegate:self startImmediately:YES];
+            } else {
+                [APP.downloadingBookQueue enqueue:book];
+            }
+        }
+    }
+    self.downloadUrl = nil;
+}
+
 
 - (void)viewDidDisappear:(BOOL)animated
 {
@@ -288,7 +269,7 @@ float topCriteria = 0;
             void (^removeBook)(id) = ^(id selector) {
                 _deleteBook = self.repository.books[indexPath.row];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"確認" message:@"この本を削除してもよろしいですか？" delegate:self cancelButtonTitle:@"いいえ" otherButtonTitles:@"はい", nil];
-                alert.delegate = self;
+                alert.tag = kTagAlertDeleteBook;
                 [alert show];
             };
             SEL sel = NSSelectorFromString([NSString stringWithFormat:@"removeBook%ld", indexPath.row]);
@@ -406,6 +387,7 @@ canMoveItemAtIndexPath:(NSIndexPath *)indexPath
     NSString *lengthString = [dict valueForKey:@"Content-Length"];
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     NSNumber *length = [formatter numberFromString:lengthString];
+    self.receivedBytes = 0;
     self.totalBytes = length.unsignedIntegerValue;
     
     self.downloadData = [[NSMutableData alloc] initWithCapacity:self.totalBytes];
@@ -416,31 +398,37 @@ canMoveItemAtIndexPath:(NSIndexPath *)indexPath
     [self.downloadData appendData:data];
     self.receivedBytes += data.length;
     
-    _downloadingBook.progress = (double)self.receivedBytes / (double)self.totalBytes;
-    [self.collectionView reloadData];
-}
+    APP.downloadingBook.progress = (double)self.receivedBytes / (double)self.totalBytes;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+        [self.collectionView.collectionViewLayout invalidateLayout];
+    });}
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSString *name = [downloadUrl lastPathComponent];
+    NSString *name = [APP.downloadingBook.downloadUrl lastPathComponent];
     NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     filePath = [filePath stringByAppendingString:[NSString stringWithFormat:@"/%@", name]];
     
-    _downloadingBook.progress = 1;
+    APP.downloadingBook.progress = 1;
     
     if ([self.downloadData writeToFile:filePath atomically:YES]) {
         CBookContainer *bookContainer = [[CBookContainer alloc] initWithURL:[NSURL fileURLWithPath:filePath]];
         UIImage *image = ((CBook *)[bookContainer.books objectAtIndex:0]).cover;
         
         if (image) {
-            _downloadingBook.imageView.image = image;
-            _downloadingBook.imageView.backgroundColor = [UIColor clearColor];
+            APP.downloadingBook.imageView.image = image;
+            APP.downloadingBook.imageView.backgroundColor = [UIColor clearColor];
         }
-        [self.collectionView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+            [self.collectionView.collectionViewLayout invalidateLayout];
+        });
+        [self.repository saveBookNames];
     }
-    _downloadingBook = _downloadingBookQueue.dequeue;
-    if (_downloadingBook) {
-        NSURLRequest *request = [NSURLRequest requestWithURL:_downloadingBook.downloadUrl];
+    APP.downloadingBook = APP.downloadingBookQueue.dequeue;
+    if (APP.downloadingBook) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:APP.downloadingBook.downloadUrl];
         NSURLConnection *connection = [[NSURLConnection alloc]
                                        initWithRequest:request delegate:self startImmediately:YES];
     }
@@ -448,13 +436,19 @@ canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    //handle error
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ネットワークエラー" message:@"通信環境の良い場所で再度お試しください" delegate:self cancelButtonTitle:@"再試行" otherButtonTitles:nil];
+    alert.tag = kTagAlertNetworkError;
+    [alert show];
 }
 
 -(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
     switch (buttonIndex) {
         case 0:
+            if (alertView.tag == kTagAlertNetworkError && APP.downloadingBook) {
+                NSURLRequest *request = [NSURLRequest requestWithURL:APP.downloadingBook.downloadUrl];
+                NSURLConnection *connection = [[NSURLConnection alloc]
+                                               initWithRequest:request delegate:self startImmediately:YES];
+            }
             break;
         case 1:
             [self removeBook:alertView withBook:_deleteBook];

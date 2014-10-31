@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Book.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -18,5 +19,8 @@
 @property (nonatomic, readonly) CGFloat WINDOW_HEIGHT;
 @property (nonatomic, readonly) CGFloat STATUS_BAR_HEIGHT;
 @property (nonatomic, readonly) CGRect BOUNDS_RECT;
+
+@property (nonatomic, readwrite) Book *downloadingBook;
+@property (nonatomic, readwrite) NSMutableArray *downloadingBookQueue;
 
 @end
